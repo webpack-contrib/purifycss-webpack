@@ -1,4 +1,4 @@
-var DemoPlugin = require('./plugin/index');
+var DemoPlugin = require('./plugin.js');
 var path = require('path');
 
 module.exports = {
