@@ -11,16 +11,19 @@ DemoPlugin.prototype.apply = function(compiler) {
 
   compiler.plugin('compilation', function(compilation) {
 
-    compilation.plugin("optimize-chunk-assets", function(chunks, callback) {
-      var modules = [];
+    compilation.plugin("optimize-modules", function(modules) {
+      //iterate over modules
+        //check if filepath ends in css
+          //split at ! and fs
+          //concat file path to css array
+          //check if module is first css
+            //if not, splice out module
+        //check if filepath does not contain node_modules
+          //concat path to content array
+      //pass css and content array into kenny's function
+      //store result in uncss string
+      //go back to first css module and splice in our code
 
-      chunks.forEach(function(chunk) {
-        chunk.modules.forEach(function(module) {
-          modules.push(module._source._value);
-        });
-      });//end chunks.forEach
-      console.log(modules);
-    })//end compilation.plugin
+  }); //end compiler.plugin
 
-  });//end compiler.plugin
 };
