@@ -3,9 +3,6 @@ var fs = require('fs');
 var DemoPlugin = function(output, options) {
   this.output = output;
   this.options = options;
-
-  console.log('hi from constructor');
-
 };
 
 module.exports = DemoPlugin;
@@ -19,7 +16,7 @@ DemoPlugin.prototype.apply = function(compiler) {
 
       chunks.forEach(function(chunk) {
         chunk.modules.forEach(function(module) {
-          modules.push(module._source);
+          modules.push(module._source._value);
         });
       });//end chunks.forEach
       console.log(modules);

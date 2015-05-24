@@ -7,7 +7,10 @@ module.exports = {
     path: __dirname,
     filename: "bundle.js"
   },
-
+  loaders: [{
+    test: /\.css$/,
+    loader: "style!css"
+  }],
   plugins: [
     new DemoPlugin(path.join(__dirname), {
       chunkModules: true,
