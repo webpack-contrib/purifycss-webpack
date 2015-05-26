@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
 var DemoPlugin = require('../');
+var S = require('string');
 
 var inputFolder = path.join(__dirname, 'fixtures');
 var inputFile = path.join(inputFolder, 'entry.js');
@@ -33,14 +34,32 @@ var compiler = webpack({
   ]
 });
 
-module.exports.test = {
+module.exports.tests = {
 
-  'removes unused css': function(test) {
+  'bundle includes all css classes': function(test) {
     compiler.run(function(err, stats) {
-      // var expected = JSON.stringify(stats.toJson(options));
-      // var actual = fs.readFileSync(outputFile);
-      // test.equal(actual, expected);
-      console.log('write test');
+      var expected = ["body", "p"];
+      var actual = fs.readFileSync(outputFile, 'utf-8');
+
+      var allPass = expected.every(function(className) {
+          return S(actual).contains(className)
+        });
+
+      test.ok(allPass, "bundle includes all css classes");
+      test.done();
+    })
+  },
+
+  'bundle does not include css classes not in source html/js': function(test) {
+    compiler.run(function(err, stats) {
+      var expected = ["video", "span", "div", "h1", "h2", "button"];
+      var actual = fs.readFileSync(outputFile, 'utf-8');
+
+      var allPass = expected.every(function(className) {
+          return !S(actual).contains(className)
+        });
+
+      test.ok(allPass, "bundle does not include css classes not in source html/js");
       test.done();
     });
   }
