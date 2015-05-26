@@ -24,8 +24,8 @@
   "homepage": "https://github.com/purifycss/purify-css",
   "dependencies": {
     "css-loader": "^0.14.2",
-    "style-loader": "^0.12.3",
-
+    "purify-css": "^1.0.0",
+    "style-loader": "^0.12.3"
   },
   "devDependencies": {
     "purify-css": "^1.0.0",
