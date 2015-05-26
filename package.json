@@ -1,14 +1,14 @@
 {
   "name": "fog-glory",
   "version": "1.0.0",
-  "description": "uncss plugin for webpack",
+  "description": "purify-css plugin for webpack",
   "main": "bundle.js",
   "scripts": {
     "test": "./node_modules/.bin/nodeunit test/plugin.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fog-glory/fog-glory.git"
+    "url": "https://github.com/purifycss/purify-css.git"
   },
   "keywords": [
     "webpack",
@@ -19,9 +19,9 @@
   "author": "kenny matt phoebe",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fog-glory/fog-glory/issues"
+    "url": "https://github.com/purifycss/purify-css/issues"
   },
-  "homepage": "https://github.com/fog-glory/fog-glory",
+  "homepage": "https://github.com/purifycss/purify-css",
   "dependencies": {
     "css-loader": "^0.14.2",
     "style-loader": "^0.12.3",
