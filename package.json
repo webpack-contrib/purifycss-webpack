@@ -4,7 +4,7 @@
   "description": "uncss plugin for webpack",
   "main": "bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/nodeunit test/plugin.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +13,8 @@
   "keywords": [
     "webpack",
     "uncss",
-    "plugin"
+    "plugin",
+    "purify"
   ],
   "author": "kenny matt phoebe",
   "license": "ISC",
@@ -23,10 +24,13 @@
   "homepage": "https://github.com/fog-glory/fog-glory",
   "dependencies": {
     "css-loader": "^0.14.2",
-    "style-loader": "^0.12.3"
+    "style-loader": "^0.12.3",
+
   },
   "devDependencies": {
     "purify-css": "^1.0.0",
-    "string": "^3.1.1"
+    "string": "^3.1.1",
+    "nodeunit": "^0.9",
+    "webpack": "^1.0"
   }
 }
