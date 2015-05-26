@@ -1,3 +1,7 @@
+#floobits
+.floobits
+.flooignore
+
 # Logs
 logs
 *.log
