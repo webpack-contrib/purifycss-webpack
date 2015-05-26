@@ -5,9 +5,5 @@ module.exports = function(input){
     return input;
   }
 
-  console.log(this._compilation.__content.length);
-  console.log('');
-  console.log('YOOOOOOOOOOOOOOOOO');
-  console.log('');
   return purify(this._compilation.__content, input);
 };
