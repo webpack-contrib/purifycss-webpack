@@ -1,3 +1,19 @@
 body {
     background: red;
 }
+
+div{
+  color:purple;
+}
+
+h1 {
+  margin: 5px;
+}
+
+h2 {
+  padding: 20em;
+}
+
+button {
+  background-color: black;
+}

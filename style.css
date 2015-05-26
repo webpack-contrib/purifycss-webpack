@@ -1,3 +1,12 @@
 body {
     background: yellow;
 }
+p{
+  background: green;
+}
+video {
+    background: white;
+}
+span{
+  background: blue;
+}
