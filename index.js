@@ -5,16 +5,13 @@ var DemoPlugin = function(rootHtml) {
 module.exports = DemoPlugin;
 
 var isCss = function(module){
-  console.log(module._source._name);
   return module._source && module._source._value && 
-         module._source._name.indexOf('.css') > -1 &&
-         module._source._name.indexOf('node_modules') === -1;
+         module._source._name.indexOf('.css') > -1;
 };
 
 var isContent = function(module){
   return module._source && module._source._value && 
-         module._source._name.indexOf('.css') === -1 &&
-         module._source._name.indexOf('node_modules') === -1;
+         module._source._name.indexOf('.css') === -1;
 };
 
 var getContentHash = function(compilation){
@@ -44,9 +41,9 @@ DemoPlugin.prototype.apply = function(compiler) {
   var cssModules;
 
   compiler.plugin('this-compilation', function(compilation) {
-    compilation._purifycss_callback = function(){
+    compilation._purifycss_callback = function(callback){
       if(cssModules.length === 0){
-        return;
+        return callback();
       }
 
       var nextModule = cssModules.pop();
@@ -61,15 +58,14 @@ DemoPlugin.prototype.apply = function(compiler) {
           console.log(err);
         }
 
-        compilation._purifycss_callback();
+        compilation._purifycss_callback(callback);
       });
     };
 
-    compilation.plugin("optimize-modules", function(modules) {
+    compilation.plugin("optimize-tree",  function(chunks, modules, callback) {
       chunkContent = getContentHash(compilation);
       cssModules = getCssModules(modules);
-      console.log(cssModules);
-      compilation._purifycss_callback();
+      compilation._purifycss_callback(callback);
     });
   });
 };
