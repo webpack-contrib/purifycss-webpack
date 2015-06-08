@@ -7,7 +7,6 @@ module.exports = function(input){
   }
   
   var content = this._compilation._purifycss_content;
-  // this._compilation._purifycss_callback();
 
   return purify(content, input);
 };
