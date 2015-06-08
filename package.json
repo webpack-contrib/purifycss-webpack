@@ -1,14 +1,14 @@
 {
-  "name": "fog-glory",
+  "name": "purifycss-webpack-plugin",
   "version": "1.0.0",
-  "description": "purify-css plugin for webpack",
-  "main": "bundle.js",
+  "description": "PurifyCSS plugin for webpack",
+  "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/nodeunit test/plugin.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/purifycss/purify-css.git"
+    "url": "https://github.com/purifycss/purifycss-webpack-plugin.git"
   },
   "keywords": [
     "webpack",
@@ -16,12 +16,12 @@
     "plugin",
     "purify"
   ],
-  "author": "kenny matt phoebe",
+  "author": "Kenny Tran, Matthew Rourke, Phoebe Li",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/purifycss/purify-css/issues"
+    "url": "https://github.com/purifycss/purifycss-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/purifycss/purify-css",
+  "homepage": "https://github.com/purifycss/purifycss-webpack-plugin",
   "dependencies": {
     "css-loader": "^0.14.2",
     "purify-css": "^1.0.0",
