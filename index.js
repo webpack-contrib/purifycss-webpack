@@ -1,8 +1,17 @@
-var DemoPlugin = function(rootHtml) {
-  this.rootHtml = rootHtml
+var fs = require('fs');
+
+var PurifyCssPlugin = function(absolutePath) {
+  var htmlPaths = Array.prototype.slice.call(arguments, 1);
+  this.htmlContent = concatFiles(absolutePath, htmlPaths);
 };
 
-module.exports = DemoPlugin;
+module.exports = PurifyCssPlugin;
+
+var concatFiles = function(absolutePath, filePaths){
+  return filePaths.reduce(function(content, filePath){
+    return content + fs.readFileSync(absolutePath + filePath, 'utf8');
+  }, '');
+};
 
 var isCss = function(module){
   return module._source && module._source._value && 
@@ -23,7 +32,7 @@ var getContentHash = function(compilation){
       }
 
       return total;
-    }, "");
+    }, '');
 
     contentHash[chunk.name] = content;
     return contentHash;
@@ -36,9 +45,10 @@ var getCssModules = function(modules){
   });
 };
 
-DemoPlugin.prototype.apply = function(compiler) {
+PurifyCssPlugin.prototype.apply = function(compiler) {
   var chunkContent;
   var cssModules;
+  var htmlContent = this.htmlContent;
 
   compiler.plugin('this-compilation', function(compilation) {
     compilation._purifycss_callback = function(callback){
@@ -47,7 +57,7 @@ DemoPlugin.prototype.apply = function(compiler) {
       }
 
       var nextModule = cssModules.pop();
-      compilation._purifycss_content = '';
+      compilation._purifycss_content = htmlContent;
 
       nextModule.chunks.forEach(function(chunk){
         compilation._purifycss_content += chunkContent[chunk.name] + ' ';
@@ -62,7 +72,7 @@ DemoPlugin.prototype.apply = function(compiler) {
       });
     };
 
-    compilation.plugin("optimize-tree",  function(chunks, modules, callback) {
+    compilation.plugin('optimize-tree',  function(chunks, modules, callback) {
       chunkContent = getContentHash(compilation);
       cssModules = getCssModules(modules);
       compilation._purifycss_callback(callback);
