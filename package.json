@@ -1,5 +1,5 @@
 {
-  "name": "purifycss-webpack-plugin",
+  "name": "purifycss-loader",
   "version": "1.0.0",
   "description": "PurifyCSS plugin for webpack",
   "main": "index.js",
