@@ -11,16 +11,16 @@ var PurifyCssPlugin = require('purifycss-loader/PurifyCssPlugin');
 
 var webpackConfig = {
   // ...
-  
+
   module: {
     loaders: [{
       test: /\.css$/, loader: "style-loader!css-loader!purifycss-loader"
     }]
   },
-  
-  plugins: {
+
+  plugins: [
     new PurifyCssPlugin(__dirname, '/index.html')
-  }
+  ]
 }
 ```
 
