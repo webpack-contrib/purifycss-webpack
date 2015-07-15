@@ -2,7 +2,7 @@
   "name": "purifycss-loader",
   "version": "1.0.0",
   "description": "PurifyCSS plugin for webpack",
-  "main": "index.js",
+  "main": "loader.js",
   "scripts": {
     "test": "./node_modules/.bin/nodeunit test/plugin.js"
   },
