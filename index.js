@@ -35,17 +35,7 @@ module.exports.prototype.apply = function(compiler) {
             for(var key in compilation.fileDependencies) {
                 var file = compilation.fileDependencies[key];
                 var ext = path.extname(file).substr(1);
-                var isScannable = false;
-                for(var i=0; i<self.scanForExts.length; i++) {
-                    if(self.scanForExts[i] == ext) {
-                        isScannable = true;
-                        break;
-                    }
-                }
-                if(isScannable) {
-                    // Add the file.
-                    files.push(file);
-                }
+                if (self.scanForExts.indexOf(ext) > -1) files.push(file);
             }
 
             // Look for purifyable CSs...
