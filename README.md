@@ -67,7 +67,7 @@ And, that's it! Your scripts and view files will be scanned for classes, and tho
 This plugin, unlike the original PurifyCSS plugin, provides special features, such as scanning the dependency files and all kinds of files. To configure such behaviours, I will show you the options.
 
 | Property      | Description
-| ---------------------------
+|---------------|------------
 | `basePath`    | The path from which all the other paths will start. Required.
 | `scanForExts` | An array of extensions that should be given to PurifyCSS when determining classes. Defaults to: `.js`
 | `paths`       | An array of globs that reveal all your files. See [glob](http://npmjs.org/glob)'s documentation to see what kind of paths you can pass in this array. Use this array to pass files that won't be known to WebPack. Required.
