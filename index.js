@@ -1,8 +1,13 @@
 var purify = require("purify-css");
-var merge = require("array-merger").merge;
 var glob = require("glob").sync;
 var path = require("path");
 var ConcatSource = require("webpack/lib/ConcatSource");
+
+function merge() {
+    var base = [];
+    base = base.concat.apply(base, arguments);
+    return base;
+}
 
 module.exports = function PurifyPlugin(options) {
     // Base path
