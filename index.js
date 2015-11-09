@@ -9,12 +9,8 @@ module.exports = function PurifyPlugin(options) {
     this.basePath = options.basePath || process.cwd();
     // Purify options
     this.purifyOptions = options.purifyOptions || {minify:true, info:true};
-    // Path/files to check
-    if(options.paths) {
-        this.paths = options.paths;
-    } else {
-        throw new Error("Required: options.paths");
-    }
+    // Path/files to check. If none supplied, an empty array will do.
+    this.paths = options.paths || [];
     // Additional extensions to scan for. This is kept minimal, for obvious reasons.
     // We are not opinionated...
     var exts = ["js"];
