@@ -3,12 +3,6 @@ var glob = require("glob").sync;
 var path = require("path");
 var ConcatSource = require("webpack/lib/ConcatSource");
 
-function merge() {
-    var base = [];
-    base = base.concat.apply(base, arguments);
-    return base;
-}
-
 module.exports = function PurifyPlugin(options) {
     // Base path
     this.basePath = options.basePath || process.cwd();
@@ -22,10 +16,11 @@ module.exports = function PurifyPlugin(options) {
 }
 
 module.exports.prototype.apply = function(compiler) {
-    var files=[], self=this;
-    self.paths.forEach(function(p){
-        files = merge(files, glob(path.join(self.basePath, p)));
-    });
+    var self = this;
+
+    var files = self.paths.reduce(function(results, p) {
+      return results.concat(glob(path.join(self.basePath, p)));
+    }, []);
 
     compiler.plugin("this-compilation", function(compilation) {
         compilation.plugin("additional-assets", function(cb){
