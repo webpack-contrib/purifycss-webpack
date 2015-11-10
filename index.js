@@ -12,7 +12,7 @@ module.exports = function PurifyPlugin(options) {
     this.paths = options.paths || [];
     // Additional extensions to scan for. This is kept minimal, for obvious reasons.
     // We are not opinionated...
-    this.scanForExts = (options.scanForExts || ["js"]);
+    this.resolveExtensions = (options.resolverExtensions || [".js"]);
 }
 
 module.exports.prototype.apply = function(compiler) {
@@ -27,8 +27,8 @@ module.exports.prototype.apply = function(compiler) {
             // Look for additional JS/HTML stuff.
             for(var key in compilation.fileDependencies) {
                 var file = compilation.fileDependencies[key];
-                var ext = path.extname(file).substr(1);
-                if (self.scanForExts.indexOf(ext) > -1) files.push(file);
+                var ext = path.extname(file);
+                if (self.resolveExtensions.indexOf(ext) > -1) files.push(file);
             }
 
             // Look for purifyable CSs...
