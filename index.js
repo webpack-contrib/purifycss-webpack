@@ -20,7 +20,7 @@ module.exports = function PurifyPlugin(options) {
     // We are not opinionated...
     var exts = ["js"];
     options.scanForExts = options.scanForExts || [];
-    this.scanForExts = merge(exts, options.scanForExts);
+    this.scanForExts = (options.scanForExts || ["js"]);
 }
 
 module.exports.prototype.apply = function(compiler) {
