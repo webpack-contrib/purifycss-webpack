@@ -18,8 +18,6 @@ module.exports = function PurifyPlugin(options) {
     this.paths = options.paths || [];
     // Additional extensions to scan for. This is kept minimal, for obvious reasons.
     // We are not opinionated...
-    var exts = ["js"];
-    options.scanForExts = options.scanForExts || [];
     this.scanForExts = (options.scanForExts || ["js"]);
 }
 
