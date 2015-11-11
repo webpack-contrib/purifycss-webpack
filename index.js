@@ -5,9 +5,13 @@ var ConcatSource = require("webpack/lib/ConcatSource");
 
 module.exports = function PurifyPlugin(options) {
     // Base path
-    this.basePath = options.basePath || process.cwd();
+    this.basePath = options.basePath || this.options.context || process.cwd();
     // Purify options
-    this.purifyOptions = options.purifyOptions || {minify:true, info:true};
+    this.purifyOptions = options.purifyOptions || {
+        minify: this.minimize,
+        info:   this.options.debug || false
+    };
+    this.purifyOptions.output = false;
     // Path/files to check. If none supplied, an empty array will do.
     this.paths = options.paths || [];
     // Additional extensions to scan for. This is kept minimal, for obvious reasons.
