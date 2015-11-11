@@ -4,29 +4,36 @@ var path = require("path");
 var ConcatSource = require("webpack/lib/ConcatSource");
 
 module.exports = function PurifyPlugin(options) {
-    // Base path
-    this.basePath = options.basePath || this.options.context || process.cwd();
-    // Purify options
-    this.purifyOptions = options.purifyOptions || {
-        minify: this.minimize,
-        info:   this.options.debug || false
-    };
-    this.purifyOptions.output = false;
-    // Path/files to check. If none supplied, an empty array will do.
-    this.paths = options.paths || [];
-    // Additional extensions to scan for. This is kept minimal, for obvious reasons.
-    // We are not opinionated...
-    this.resolveExtensions = (options.resolverExtensions || [".js"]);
+    // Store the user's options
+    this.userOptions = options;
 }
 
 module.exports.prototype.apply = function(compiler) {
+    // Keep a reference to self
     var self = this;
 
-    var files = self.paths.reduce(function(results, p) {
-      return results.concat(glob(path.join(self.basePath, p)));
-    }, []);
-
+    // Bind the plugin into this compilation.
     compiler.plugin("this-compilation", function(compilation) {
+        // WebPack options
+        var wpOptions = compilation.compiler.options;
+        // Base path
+        self.basePath = self.userOptions.basePath || wpOptions.context || process.cwd();
+        // Purify options
+        self.purifyOptions = self.userOptions.purifyOptions || {
+            minify: false,
+            info:   wpOptions.debug || false
+        };
+        self.purifyOptions.output = false;
+        // Path/files to check. If none supplied, an empty array will do.
+        self.paths = self.userOptions.paths || [];
+        // Additional extensions to scan for. This is kept minimal, for obvious reasons.
+        // We are not opinionated...
+        self.resolveExtensions = (self.userOptions.resolverExtensions || [".js"]);
+
+        var files = self.paths.reduce(function(results, p) {
+          return results.concat(glob(path.join(self.basePath, p)));
+        }, []);
+
         compilation.plugin("additional-assets", function(cb){
             // Look for additional JS/HTML stuff.
             for(var key in compilation.fileDependencies) {
