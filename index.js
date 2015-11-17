@@ -28,7 +28,7 @@ module.exports.prototype.apply = function(compiler) {
         self.paths = self.userOptions.paths || [];
         // Additional extensions to scan for. This is kept minimal, for obvious reasons.
         // We are not opinionated...
-        self.resolveExtensions = (self.userOptions.resolverExtensions || [".js"]);
+        self.resolveExtensions = self.userOptions.resolveExtensions || compiler.options.resolve.extensions;
 
         var files = self.paths.reduce(function(results, p) {
           return results.concat(glob(path.join(self.basePath, p)));
