@@ -1,6 +1,6 @@
 {
   "name": "bird3-purifycss-webpack-plugin",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "BIRD3's PurifyCSS WebPack plugin. Time to clean your styles!",
   "main": "index.js",
   "scripts": {
