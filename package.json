@@ -1,29 +1,27 @@
 {
-  "name": "bird3-purifycss-webpack-plugin",
-  "version": "1.0.9",
-  "description": "BIRD3's PurifyCSS WebPack plugin. Time to clean your styles!",
+  "name": "purifycss-webpack-plugin",
+  "version": "2.0.0",
+  "description": "PurifyCSS plugin for webpack",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'No test command available, yet.' && exit 1"
+    "test": "echo \"No test suite for this version, yet.\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DragonsInn/bird3-purifycss-webpack-plugin.git"
+    "url": "https://github.com/purifycss/purifycss-webpack-plugin.git"
   },
   "keywords": [
-    "purify-css",
-    "purifycss",
     "webpack",
+    "uncss",
     "plugin",
-    "purify",
-    "css"
+    "purify"
   ],
-  "author": "Ingwie Phoenix <ingwie2000@gmail.com>",
-  "license": "MIT",
+  "author": "Kenny Tran, Matthew Rourke, Phoebe Li, Kevin \"Ingwie Phoenix\" Ingwersen",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DragonsInn/bird3-purifycss-webpack-plugin/issues"
+    "url": "https://github.com/purifycss/purifycss-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/DragonsInn/bird3-purifycss-webpack-plugin#readme",
+  "homepage": "https://github.com/purifycss/purifycss-webpack-plugin",
   "dependencies": {
     "glob": "^5.0.15",
     "purify-css": "^1.0.17"
