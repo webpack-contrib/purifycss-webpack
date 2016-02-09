@@ -1,6 +1,6 @@
 {
   "name": "purifycss-webpack-plugin",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "PurifyCSS plugin for webpack",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,6 @@
   "homepage": "https://github.com/purifycss/purifycss-webpack-plugin",
   "dependencies": {
     "glob": "^5.0.15",
-    "purify-css": "^1.0.17"
+    "purify-css": "^1.1.1"
   }
 }
