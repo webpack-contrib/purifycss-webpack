@@ -1,7 +1,7 @@
 var purify = require("purify-css");
 var glob = require("glob").sync;
 var path = require("path");
-var ConcatSource = require("webpack/lib/ConcatSource");
+var ConcatSource = require("webpack-sources").ConcatSource;
 
 module.exports = function PurifyPlugin(options) {
     // Store the user's options
