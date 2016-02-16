@@ -1,6 +1,6 @@
 # PurifyCSS WebPack Plugin
 
-This is a plugin for WebPack that utilizes PurifyCSS to clean your CSS. Its dead simple, but it requires you to be prepared.
+This is a plugin for WebPack that utilizes [PurifyCSS](https://github.com/purifycss/purifycss) to clean your CSS. Its dead simple, but it requires you to be prepared.
 
 So, let's go and clean some style!
 
