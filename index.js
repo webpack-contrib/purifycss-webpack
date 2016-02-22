@@ -44,7 +44,7 @@ module.exports.prototype.apply = function(compiler) {
 
             // Look for purifyable CSs...
             for(var key in compilation.assets) {
-                if(/\.css$/i.test(key)) {
+                if(/\.css/i.test(key)) {
                     // We found a CSS. So purify it.
                     var asset = compilation.assets[key];
                     var css = asset.source();
