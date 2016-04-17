@@ -36,8 +36,8 @@ module.exports.prototype.apply = function(compiler) {
         }, []);
 
         compilation.plugin("additional-assets", function(cb){
-            if (compilation.chunks.length === 1 && compilation.chunks[0].name === 'main') {
-                // main chunk
+            // check if there is only one chunk or if there are no entryPaths provided
+            if (compilation.chunks.length === 1 || !self.entryPaths) {
                 // Look for additional JS/HTML stuff.
                 for(var key in compilation.fileDependencies) {
                     var file = compilation.fileDependencies[key];
@@ -49,61 +49,57 @@ module.exports.prototype.apply = function(compiler) {
                 for(var key in compilation.assets) {
                     if(/\.css$/i.test(key)) {
                         // We found a CSS. So purify it.
-                        var asset = compilation.assets[key];
-                        executePurification(files, asset, key);
+                        executePurification(files, key);
                     }
                 }
             } else {
                 // multiple entry chunks
-                var cssAsset;
                 var assets = Object.keys(compilation.assets);
 
                 compilation.chunks.forEach(function (chunk, i) {
-                    // extract html chunk files
                     var key;
-                    var error = false;
 
                     if (self.entryPaths[chunk.name]) {
+                        // extract html chunk files
                         var chunkFiles = self.entryPaths[chunk.name].reduce(function (results, p) {
                             return results.concat(glob(path.join(self.basePath, p)));
-                        }, []);   
-                    } else {
-                        console.log('Wrong entryPath for ' + chunk.name);
-                        error = true;
-                    }
+                        }, []);
 
-                    // filter chunk modules for additional files to include ex. .js, .es6,...
-                    var chunkModules = chunk.modules.filter(function (module) {
-                        var ext = path.extname(module.resource);
-                        return self.resolveExtensions.indexOf(ext) > -1;
-                    });
+                        // filter chunk modules for additional files to include ex. .js, .es6,...
+                        var chunkModules = chunk.modules.filter(function (module) {
+                            var ext = path.extname(module.resource);
+                            return self.resolveExtensions.indexOf(ext) > -1;
+                        });
 
-                    // include additional modules
-                    chunkFiles.concat(chunkModules);
+                        // include additional modules
+                        chunkFiles.concat(chunkModules);
 
-                    // find css asset
-                    for (var k = 0; k < assets.length; k++){
-                        if (assets[k].indexOf(chunk.name) > -1 && path.extname(assets[k]) === '.css') {
-                            cssAsset = compilation.assets[assets[k]];
-                            key = assets[k];
-                            break;
-                        }
-                    }
-
-                    if (cssAsset && !error) {
-                        if (self.purifyOptions.info) {
-                            console.log(chunk.name);
+                        // find css asset
+                        for (var i = 0; i < assets.length; i++){
+                            if (assets[i].indexOf(chunk.name) > -1 && path.extname(assets[i]) === '.css') {
+                                key = assets[i];
+                                break;
+                            }
                         }
 
-                        executePurification(chunkFiles, cssAsset, key);
+                        if (key) {
+                            if (self.purifyOptions.info) {
+                                console.log(chunk.name);
+                            }
+
+                            executePurification(chunkFiles, key);
+                        } else {
+                            console.warn('No CSS for chunk: ' + chunk.name);
+                        }
                     } else {
-                        console.log('No CSS for chunk: ' + chunk.name);
+                        console.warn('No entryPath for chunk: ' + chunk.name);
                     }
                 });
             }
 
-            function executePurification(files, cssAsset, key) {
-                var css = cssAsset.source();
+            function executePurification(files, key) {
+                var asset = compilation.assets[key];
+                var css = asset.source();
                 var newCss = new ConcatSource();
 
                 newCss.add(purify(files, css, self.purifyOptions));
