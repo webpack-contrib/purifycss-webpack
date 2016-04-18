@@ -27,7 +27,7 @@ module.exports.prototype.apply = function(compiler) {
         // Path/files to check. If none supplied, an empty array will do.
         self.paths = self.userOptions.paths || [];
         // chunk entry files.
-        self.entryPaths = self.userOptions.entryPaths || [];
+        self.entryPaths = self.userOptions.entryPaths;
         // Additional extensions to scan for. This is kept minimal, for obvious reasons.
         // We are not opinionated...
         self.resolveExtensions = self.userOptions.resolveExtensions || compiler.options.resolve.extensions;
