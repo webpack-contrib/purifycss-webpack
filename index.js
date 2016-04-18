@@ -26,13 +26,14 @@ module.exports.prototype.apply = function(compiler) {
         self.purifyOptions.output = false;
         // Path/files to check. If none supplied, an empty array will do.
         self.paths = self.userOptions.paths || [];
+        // chunk entry files.
         self.entryPaths = self.userOptions.entryPaths || [];
         // Additional extensions to scan for. This is kept minimal, for obvious reasons.
         // We are not opinionated...
         self.resolveExtensions = self.userOptions.resolveExtensions || compiler.options.resolve.extensions;
 
         var files = self.paths.reduce(function(results, p) {
-          return results.concat(glob(path.join(self.basePath, p)));
+            return results.concat(glob(path.join(self.basePath, p)));
         }, []);
 
         compilation.plugin("additional-assets", function(cb){
@@ -56,7 +57,7 @@ module.exports.prototype.apply = function(compiler) {
                 // multiple entry chunks
                 var assets = Object.keys(compilation.assets);
 
-                compilation.chunks.forEach(function (chunk, i) {
+                compilation.chunks.forEach(function (chunk) {
                     var key;
 
                     if (self.entryPaths[chunk.name]) {
@@ -66,13 +67,12 @@ module.exports.prototype.apply = function(compiler) {
                         }, []);
 
                         // filter chunk modules for additional files to include ex. .js, .es6,...
-                        var chunkModules = chunk.modules.filter(function (module) {
-                            var ext = path.extname(module.resource);
-                            return self.resolveExtensions.indexOf(ext) > -1;
-                        });
-
-                        // include additional modules
-                        chunkFiles.concat(chunkModules);
+                        for (var j = 0; j < chunk.modules.length; j++) {
+                            var ext = path.extname(chunk.modules[j].resource);
+                            if (self.resolveExtensions.indexOf(ext) > -1) {
+                                chunkFiles.push(chunk.modules[j].resource);
+                            }
+                        }
 
                         // find css asset
                         for (var i = 0; i < assets.length; i++){
