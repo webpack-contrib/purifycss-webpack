@@ -76,4 +76,4 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 | `basePath`          | The path from which all the other paths will start. Required.
 | `resolveExtensions` | An array of extensions that should be given to PurifyCSS when determining classes. (defaults to webpack `resolve.extensions` config)
 | `paths`             | An array of globs that reveal all your files. See [glob](http://npmjs.org/glob)'s documentation to see what kind of paths you can pass in this array. Use this array to pass files that won't be known to WebPack.
-| `purifyOptions`     | Pass these options to PurifyCSS. See [here](https://github.com/purifycss/purifycss#options-optional). Note: `output` is always `false`.
+| `purifyOptions`     | Pass these options to PurifyCSS. See [here](https://github.com/purifycss/purifycss#the-optional-options-argument). Note: `output` is always `false`.
