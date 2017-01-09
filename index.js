@@ -62,7 +62,7 @@ function searchAdditionalFiles(fileDependencies, resolveExtensions) {
     const file = fileDependencies[key];
     const ext = path.extname(file);
 
-    if (resolveExtensions.indexOf(ext) >= -1) {
+    if (resolveExtensions.indexOf(ext) >= 0) {
       return file;
     }
 
