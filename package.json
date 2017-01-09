@@ -1,14 +1,14 @@
 {
-  "name": "purify-webpack-plugin",
-  "version": "2.0.3",
-  "description": "Unofficial PurifyCSS plugin for webpack",
+  "name": "@webpack-contrib/purifycss-webpack-plugin",
+  "version": "0.0.0",
+  "description": "Community maintained PurifyCSS plugin for webpack",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test suite for this version, yet.\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/webpack-contrib/purify-webpack-plugin.git"
+    "url": "https://github.com/webpack-contrib/purifycss-webpack-plugin.git"
   },
   "keywords": [
     "webpack",
@@ -19,9 +19,9 @@
   "author": "Kenny Tran, Matthew Rourke, Phoebe Li, Kevin \"Ingwie Phoenix\" Ingwersen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/webpack-contrib/purify-webpack-plugin/issues"
+    "url": "https://github.com/webpack-contrib/purifycss-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/webpack-contrib/purify-webpack-plugin",
+  "homepage": "https://github.com/webpack-contrib/purifycss-webpack-plugin",
   "peerDependencies": {
     "webpack": "^1.9.11 || ^2.1.0-beta.19 || ^2.2.0-rc.0"
   },
