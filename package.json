@@ -1,7 +1,7 @@
 {
-  "name": "@webpack-contrib/purifycss-webpack-plugin",
-  "version": "0.0.0",
-  "description": "Community maintained PurifyCSS plugin for webpack",
+  "name": "purifycss-webpack-plugin",
+  "version": "2.0.3",
+  "description": "PurifyCSS plugin for webpack",
   "main": "index.js",
   "scripts": {
     "test:all": "npm run test:lint",
@@ -31,7 +31,6 @@
     "webpack-sources": "^0.1.0",
     "purify-css": "^1.1.1"
   },
-  "pre-push": [],
   "devDependencies": {
     "eslint": "^3.13.0",
     "eslint-config-airbnb": "^14.0.0",
