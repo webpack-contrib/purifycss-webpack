@@ -1,6 +1,4 @@
-# PurifyCSS Webpack Plugin - Community Version
-
-> **IMPORTANT: This is a friendly fork of [purifycss-webpack-plugin](https://github.com/purifycss/purifycss-webpack-plugin) with a slightly different API.**
+# PurifyCSS Webpack Plugin
 
 This is a plugin for webpack that utilizes [PurifyCSS](https://github.com/purifycss/purifycss) to clean your CSS. You **should** use the [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin) with this.
 
@@ -11,7 +9,7 @@ Without any CSS file being emitted as an asset, this plugin will not do a thing 
 First, install it:
 
 ```bash
-npm install @webpack-contrib/purifycss-webpack-plugin --save-dev
+npm install purifycss-webpack-plugin --save-dev
 ```
 
 Then configure as follows:
@@ -20,7 +18,7 @@ Then configure as follows:
 const path = require('path');
 const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const PurifyPlugin = require('@webpack-contrib/purifycss-webpack-plugin');
+const PurifyPlugin = require('purifycss-webpack-plugin');
 
 module.exports = {
   entry: {...},
