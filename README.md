@@ -18,6 +18,7 @@ Then configure as follows:
 
 ```javascript
 const path = require('path');
+const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyPlugin = require('@webpack-contrib/purifycss-webpack-plugin');
 
@@ -40,9 +41,7 @@ module.exports = {
     // Make sure this is after ExtractTextPlugin!
     new PurifyPlugin({
       // Give paths to parse for rules. These should be absolute!
-      paths: [
-        path.join(__dirname, 'app/*.html')
-      ]
+      paths: glob.sync('app/*.html'),
     })
   ]
 };
@@ -56,10 +55,9 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 
 | Property            | Description
 |---------------------|------------
-| `basePath`          | The path from which all the other paths will start. Required.
 | `resolveExtensions` | An array of extensions that should be given to PurifyCSS when determining classes. (defaults to webpack `resolve.extensions` config)
-| `paths`             | An array of globs that reveal all your files. See [glob](http://npmjs.org/glob)'s documentation to see what kind of paths you can pass in this array. Use this array to pass files that won't be known to WebPack.
-| `purifyOptions`     | Pass these options to PurifyCSS. See [here](https://github.com/purifycss/purifycss#the-optional-options-argument). Note: `output` is always `false`.
+| `paths`             | An array of paths to traverse. It can be a good idea [glob](http://npmjs.org/glob) these. This can be an object (`<entry name> -> [<path>]`) too if you need more control.
+| `purifyOptions`     | Pass [custom options to PurifyCSS](https://github.com/purifycss/purifycss#the-optional-options-argument).
 
 ## License
 

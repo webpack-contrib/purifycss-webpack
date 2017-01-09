@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const glob = require('glob');
 const PurifyCSSPlugin = require('../');
 
 exports.extractCSS = function(paths) {
@@ -33,14 +34,9 @@ exports.purifyCSS = function(paths) {
   return {
     plugins: [
       new PurifyCSSPlugin({
-        // Our paths are absolute so Purify needs patching
-        // against that to work.
-        basePath: '/',
-
         // `paths` is used to point PurifyCSS to files not
-        // visible to Webpack. This expects glob patterns so
-        // we adapt here.
-        paths: paths.map(path => `${path}/*`),
+        // visible to webpack. This expects an array of individual paths.
+        paths: [].concat.apply([], paths.map(path => glob.sync(`${path}/*`))),
 
         // Walk through only html files within node_modules. It
         // picks up .js files by default!

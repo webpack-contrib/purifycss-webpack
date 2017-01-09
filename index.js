@@ -1,5 +1,4 @@
 var purify = require("purify-css");
-var glob = require("glob").sync;
 var path = require("path");
 var ConcatSource = require("webpack-sources").ConcatSource;
 
@@ -14,39 +13,40 @@ module.exports.prototype.apply = function(compiler) {
 
     // Bind the plugin into this compilation.
     compiler.plugin("this-compilation", function(compilation) {
-        // WebPack options
+        // webpack options
         var wpOptions = compilation.compiler.options;
-        // Base path
-        self.basePath = self.userOptions.basePath || wpOptions.context || process.cwd();
+
         // Purify options
         self.purifyOptions = self.userOptions.purifyOptions || {
             minify: false,
             info:   wpOptions.debug || false
         };
         self.purifyOptions.output = false;
+
         // Path/files to check. If none supplied, an empty array will do.
+        // This can be an object too (entry -> [paths])
         self.paths = self.userOptions.paths || [];
-        // chunk entry files. If none suplied, assume there is only one chunk
-        self.entryPaths = self.userOptions.entryPaths;
+
         // Additional extensions to scan for. This is kept minimal, for obvious reasons.
         // We are not opinionated...
         self.resolveExtensions = self.userOptions.resolveExtensions || compiler.options.resolve.extensions;
 
-        var files = self.paths.reduce(function(results, p) {
-            return results.concat(glob(path.join(self.basePath, p)));
-        }, []);
+        var files = self.paths;
 
         compilation.plugin("additional-assets", function(cb){
-            // check if there is only one chunk or if there are no entryPaths provided
-            if (compilation.chunks.length === 1 || !self.userOptions.entryPaths) {
+            // check if there is only one chunk if array
+            if (compilation.chunks.length === 1 || Array.isArray(self.paths)) {
                 // Look for additional JS/HTML stuff.
                 for(var key in compilation.fileDependencies) {
                     var file = compilation.fileDependencies[key];
                     var ext = path.extname(file);
-                    if (self.resolveExtensions.indexOf(ext) > -1) files.push(file);
+
+                    if (self.resolveExtensions.indexOf(ext) > -1) {
+                        files.push(file);
+                    }
                 }
 
-                // Look for purifyable CSs...
+                // Look for purifyable CSS...
                 for(var key in compilation.assets) {
                     if(/\.css$/i.test(key)) {
                         // We found a CSS. So purify it.
@@ -60,11 +60,9 @@ module.exports.prototype.apply = function(compiler) {
                 compilation.chunks.forEach(function (chunk) {
                     var key;
 
-                    if (self.entryPaths[chunk.name]) {
+                    if (self.paths[chunk.name]) {
                         // extract html chunk files
-                        var chunkFiles = self.entryPaths[chunk.name].reduce(function (results, p) {
-                            return results.concat(glob(path.join(self.basePath, p)));
-                        }, []);
+                        var chunkFiles = self.paths[chunk.name];
 
                         // filter chunk modules for additional files to include ex. .js, .es6,...
                         for (var j = 0; j < chunk.modules.length; j++) {
@@ -74,7 +72,7 @@ module.exports.prototype.apply = function(compiler) {
                             }
                         }
 
-                        // find css asset
+                        // find CSS asset
                         for (var i = 0; i < assets.length; i++){
                             if (assets[i].indexOf(chunk.name) > -1 && path.extname(assets[i]) === '.css') {
                                 key = assets[i];
