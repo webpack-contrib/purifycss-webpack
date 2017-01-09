@@ -22,7 +22,7 @@ exports.extractCSS = function extractCSS(paths) {
     },
     plugins: [
       // Output extracted CSS to a file
-      new ExtractTextPlugin('[name].[contenthash].css')
+      new ExtractTextPlugin('[name].css')
     ]
   };
 };
