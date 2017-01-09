@@ -8,13 +8,13 @@ Without any CSS file being emitted as an asset, this plugin will not do a thing 
 
 ## Usage
 
-First, get it:
+First, install it:
 
 ```bash
-npm install purify-webpack-plugin --save
+npm install @webpack-contrib/purifycss-webpack-plugin --save-dev
 ```
 
-The configure as follows:
+Then configure as follows:
 
 ```javascript
 const path = require('path');
