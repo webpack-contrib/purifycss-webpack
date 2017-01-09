@@ -26,6 +26,11 @@ module.exports.prototype.apply = function apply(compiler) {
     // An array of files to check.
     self.paths = self.userOptions.paths || [];
 
+    // Convert possible string to an array
+    if (typeof self.paths === 'string') {
+      self.paths = [self.paths];
+    }
+
     // Additional extensions to scan for. This is kept minimal.
     self.resolveExtensions = (
       self.userOptions.resolveExtensions || compiler.options.resolve.extensions

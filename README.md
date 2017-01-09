@@ -56,7 +56,7 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 | Property            | Description
 |---------------------|------------
 | `resolveExtensions` | An array of extensions that should be given to PurifyCSS when determining classes. (defaults to webpack `resolve.extensions` config)
-| `paths`             | An array of paths to traverse. It can be a good idea [glob](http://npmjs.org/glob) these.
+| `paths`             | An array of paths or a path to traverse. It can be a good idea [glob](http://npmjs.org/glob) these.
 | `purifyOptions`     | Pass [custom options to PurifyCSS](https://github.com/purifycss/purifycss#the-optional-options-argument).
 
 ## License
