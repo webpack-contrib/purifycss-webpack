@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 
 const parts = require('./webpack.parts');
@@ -9,18 +8,16 @@ const PATHS = {
   build: path.join(__dirname, 'build')
 };
 
-module.exports = function() {
-  return merge(
-    {
-      entry: {
-        app: PATHS.app
-      },
-      output: {
-        path: PATHS.build,
-        filename: '[name].js'
-      }
+module.exports = merge(
+  {
+    entry: {
+      app: PATHS.app
     },
-    parts.extractCSS(),
-    parts.purifyCSS(PATHS.app)
-  );
-};
+    output: {
+      path: PATHS.build,
+      filename: '[name].js'
+    }
+  },
+  parts.extractCSS(),
+  parts.purifyCSS(PATHS.app)
+);

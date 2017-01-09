@@ -1,110 +1,82 @@
-var purify = require("purify-css");
-var path = require("path");
-var ConcatSource = require("webpack-sources").ConcatSource;
+const purify = require('purify-css');
+const path = require('path');
+const ConcatSource = require('webpack-sources').ConcatSource;
 
 module.exports = function PurifyPlugin(options) {
-    // Store the user's options
-    this.userOptions = options;
+  // Store the user's options
+  this.userOptions = options;
+};
+
+module.exports.prototype.apply = function apply(compiler) {
+  // Keep a reference to self
+  const self = this;
+
+  // Bind the plugin into this compilation.
+  compiler.plugin('this-compilation', (compilation) => {
+    // webpack options
+    const wpOptions = compilation.compiler.options;
+
+    // Purify options
+    self.purifyOptions = self.userOptions.purifyOptions || {
+      minify: false,
+      info: wpOptions.debug || false
+    };
+    self.purifyOptions.output = false;
+
+    // An array of files to check.
+    self.paths = self.userOptions.paths || [];
+
+    // Additional extensions to scan for. This is kept minimal.
+    self.resolveExtensions = (
+      self.userOptions.resolveExtensions || compiler.options.resolve.extensions
+    );
+
+    const files = self.paths;
+
+    compilation.plugin('additional-assets', (cb) => {
+      // Check only if there is one chunk and if paths are an array
+      if (compilation.chunks.length === 1 || Array.isArray(self.paths)) {
+        purifyCSS(
+          // Look for additional files
+          files.concat(
+            searchAdditionalFiles(compilation.fileDependencies, self.resolveExtensions)
+          ),
+          compilation.assets
+        ).forEach((o) => {
+          compilation.assets[o.key] = o.value;
+        });
+      }
+
+      cb();
+    });
+  });
+};
+
+function searchAdditionalFiles(fileDependencies, resolveExtensions) {
+  return Object.keys(fileDependencies).map((key) => {
+    const file = fileDependencies[key];
+    const ext = path.extname(file);
+
+    if (resolveExtensions.indexOf(ext) >= -1) {
+      return file;
+    }
+
+    return null;
+  }).filter(a => a);
 }
 
-module.exports.prototype.apply = function(compiler) {
-    // Keep a reference to self
-    var self = this;
+function purifyCSS(files, assets, purifyOptions) {
+  return Object.keys(assets).map((key) => {
+    if (/\.css$/i.test(key)) {
+      const asset = assets[key];
+      const css = asset.source();
+      const value = new ConcatSource();
 
-    // Bind the plugin into this compilation.
-    compiler.plugin("this-compilation", function(compilation) {
-        // webpack options
-        var wpOptions = compilation.compiler.options;
+      value.add(purify(files, css, purifyOptions));
 
-        // Purify options
-        self.purifyOptions = self.userOptions.purifyOptions || {
-            minify: false,
-            info:   wpOptions.debug || false
-        };
-        self.purifyOptions.output = false;
+      return { key, value };
+    }
 
-        // Path/files to check. If none supplied, an empty array will do.
-        // This can be an object too (entry -> [paths])
-        self.paths = self.userOptions.paths || [];
-
-        // Additional extensions to scan for. This is kept minimal, for obvious reasons.
-        // We are not opinionated...
-        self.resolveExtensions = self.userOptions.resolveExtensions || compiler.options.resolve.extensions;
-
-        var files = self.paths;
-
-        compilation.plugin("additional-assets", function(cb){
-            // check if there is only one chunk if array
-            if (compilation.chunks.length === 1 || Array.isArray(self.paths)) {
-                // Look for additional JS/HTML stuff.
-                for(var key in compilation.fileDependencies) {
-                    var file = compilation.fileDependencies[key];
-                    var ext = path.extname(file);
-
-                    if (self.resolveExtensions.indexOf(ext) > -1) {
-                        files.push(file);
-                    }
-                }
-
-                // Look for purifyable CSS...
-                for(var key in compilation.assets) {
-                    if(/\.css$/i.test(key)) {
-                        // We found a CSS. So purify it.
-                        executePurification(files, key);
-                    }
-                }
-            } else {
-                // multiple entry chunks
-                var assets = Object.keys(compilation.assets);
-
-                compilation.chunks.forEach(function (chunk) {
-                    var key;
-
-                    if (self.paths[chunk.name]) {
-                        // extract html chunk files
-                        var chunkFiles = self.paths[chunk.name];
-
-                        // filter chunk modules for additional files to include ex. .js, .es6,...
-                        for (var j = 0; j < chunk.modules.length; j++) {
-                            var ext = path.extname(chunk.modules[j].resource);
-                            if (self.resolveExtensions.indexOf(ext) > -1) {
-                                chunkFiles.push(chunk.modules[j].resource);
-                            }
-                        }
-
-                        // find CSS asset
-                        for (var i = 0; i < assets.length; i++){
-                            if (assets[i].indexOf(chunk.name) > -1 && path.extname(assets[i]) === '.css') {
-                                key = assets[i];
-                                break;
-                            }
-                        }
-
-                        if (key) {
-                            if (self.purifyOptions.info) {
-                                console.log(chunk.name);
-                            }
-
-                            executePurification(chunkFiles, key);
-                        } else {
-                            console.warn('No CSS for chunk: ' + chunk.name);
-                        }
-                    } else {
-                        console.warn('No entryPath for chunk: ' + chunk.name);
-                    }
-                });
-            }
-
-            function executePurification(files, key) {
-                var asset = compilation.assets[key];
-                var css = asset.source();
-                var newCss = new ConcatSource();
-
-                newCss.add(purify(files, css, self.purifyOptions));
-                compilation.assets[key] = newCss;
-            }
-
-            cb();
-        });
-    });
+    return null;
+  }).filter(a => a);
 }

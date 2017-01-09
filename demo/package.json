@@ -3,9 +3,10 @@
   "scripts": {
     "build": "webpack"
   },
-  "devDependencies": {
+  "dependencies": {
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "glob": "^7.1.1",
     "purecss": "^0.6.2",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0-rc.3",

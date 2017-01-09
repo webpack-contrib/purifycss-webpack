@@ -4,7 +4,9 @@
   "description": "Community maintained PurifyCSS plugin for webpack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test suite for this version, yet.\" && exit 0"
+    "test:all": "npm run test:lint",
+    "test": "echo \"No test suite for this version, yet.\" && exit 0",
+    "test:lint": "eslint . --ext .js --cache"
   },
   "repository": {
     "type": "git",
@@ -28,5 +30,16 @@
   "dependencies": {
     "webpack-sources": "^0.1.0",
     "purify-css": "^1.1.1"
-  }
+  },
+  "pre-push": [],
+  "devDependencies": {
+    "eslint": "^3.13.0",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "git-prepush-hook": "^1.0.1"
+  },
+  "pre-push": [
+    "test:all"
+  ]
 }

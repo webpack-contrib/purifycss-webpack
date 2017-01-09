@@ -1,9 +1,8 @@
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const glob = require('glob');
 const PurifyCSSPlugin = require('../');
 
-exports.extractCSS = function(paths) {
+exports.extractCSS = function extractCSS(paths) {
   return {
     module: {
       rules: [
@@ -28,15 +27,18 @@ exports.extractCSS = function(paths) {
   };
 };
 
-exports.purifyCSS = function(paths) {
-  paths = Array.isArray(paths) ? paths : [paths];
-
+exports.purifyCSS = function purifyCSS(paths) {
   return {
     plugins: [
       new PurifyCSSPlugin({
         // `paths` is used to point PurifyCSS to files not
         // visible to webpack. This expects an array of individual paths.
-        paths: [].concat.apply([], paths.map(path => glob.sync(`${path}/*`))),
+        paths: [].concat.apply(
+          [],
+          (Array.isArray(paths) ? paths : [paths]).map(
+            path => glob.sync(`${path}/*`)
+          )
+        ),
 
         // Walk through only html files within node_modules. It
         // picks up .js files by default!
