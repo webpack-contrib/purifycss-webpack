@@ -23,8 +23,8 @@ module.exports = function PurifyPlugin(options) {
               ),
               compilation.assets,
               parse.options(options.purifyOptions)
-            ).forEach((o) => {
-              compilation.assets[o.key] = o.value;
+            ).forEach(({ key, source }) => {
+              compilation.assets[key] = source;
             });
           }
 

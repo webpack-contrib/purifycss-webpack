@@ -6,11 +6,11 @@ function purifyCSS(files, assets, purifyOptions) {
     if (/\.css$/i.test(key)) {
       const asset = assets[key];
       const css = asset.source();
-      const value = new ConcatSource();
+      const source = new ConcatSource();
 
-      value.add(purify(files, css, purifyOptions));
+      source.add(purify(files, css, purifyOptions));
 
-      return { key, value };
+      return { key, source };
     }
 
     return null;
