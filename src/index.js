@@ -17,7 +17,6 @@ module.exports = function PurifyPlugin(options) {
           // Check only if there is one chunk and if paths are an array
           if (compilation.chunks.length === 1 || Array.isArray(paths)) {
             purifyCSS(
-              // Look for additional files
               paths.concat(
                 search.additionalFiles(compilation.fileDependencies, resolveExtensions)
               ),
@@ -25,6 +24,22 @@ module.exports = function PurifyPlugin(options) {
               parse.options(options.purifyOptions)
             ).forEach(({ key, source }) => {
               compilation.assets[key] = source;
+            });
+          } else {
+            compilation.chunks.forEach((chunk) => {
+              purifyCSS(
+                paths[chunk.name].concat(
+                  search.additionalFiles(
+                    chunk.modules, resolveExtensions, ({ resource }) => resource
+                  )
+                ),
+                search.assets(compilation.assets, /\.css$/i).filter(
+                  ({ key }) => key.indexOf(chunk.name) >= 0
+                ),
+                parse.options(options.purifyOptions)
+              ).forEach(({ key, source }) => {
+                compilation.assets[key] = source;
+              });
             });
           }
 
