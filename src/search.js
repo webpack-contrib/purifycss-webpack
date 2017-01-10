@@ -1,8 +1,12 @@
 const path = require('path');
 
-function searchAdditionalFiles(fileDependencies, resolveExtensions) {
-  return Object.keys(fileDependencies).map((key) => {
-    const file = fileDependencies[key];
+function searchAdditionalFiles(
+  modules,
+  resolveExtensions,
+  getter = a => a
+) {
+  return Object.keys(modules).map((key) => {
+    const file = getter(modules[key]);
     const ext = path.extname(file);
 
     return resolveExtensions.indexOf(ext) >= 0 && file;
