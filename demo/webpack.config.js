@@ -1,5 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const glob = require('glob');
 
 const parts = require('./webpack.parts');
 
@@ -21,7 +22,10 @@ module.exports = [
       }
     },
     parts.extractCSS(),
-    parts.purifyCSS(PATHS.app)
+    parts.purifyCSS(
+      glob.sync(`${PATHS.app}/*`),
+      ['.html']
+    )
   ),
   merge(
     {
@@ -35,6 +39,9 @@ module.exports = [
       }
     },
     parts.extractCSS(),
-    parts.purifyCSS(PATHS.app)
+    parts.purifyCSS({
+      first: glob.sync(`${PATHS.app}/*`),
+      second: glob.sync(`${PATHS.another}/*`)
+    }, ['.html'])
   )
 ];
