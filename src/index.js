@@ -1,4 +1,4 @@
-const searchAdditionalFiles = require('./search-additional-files');
+const search = require('./search');
 const parse = require('./parse');
 const purifyCSS = require('./purify-css');
 
@@ -19,7 +19,7 @@ module.exports = function PurifyPlugin(options) {
             purifyCSS(
               // Look for additional files
               paths.concat(
-                searchAdditionalFiles(compilation.fileDependencies, resolveExtensions)
+                search.additionalFiles(compilation.fileDependencies, resolveExtensions)
               ),
               compilation.assets,
               parse.options(options.purifyOptions)

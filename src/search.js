@@ -13,4 +13,6 @@ function searchAdditionalFiles(fileDependencies, resolveExtensions) {
   }).filter(a => a);
 }
 
-module.exports = searchAdditionalFiles;
+module.exports = {
+  additionalFiles: searchAdditionalFiles
+};
