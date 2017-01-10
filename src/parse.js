@@ -1,8 +1,5 @@
-function parseOptions(options, debug) {
-  const ret = options || {
-    minify: false,
-    info: debug
-  };
+function parseOptions(options) {
+  const ret = options || { minify: false };
   ret.output = false;
 
   return ret;
