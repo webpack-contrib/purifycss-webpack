@@ -5,14 +5,17 @@ function searchAdditionalFiles(fileDependencies, resolveExtensions) {
     const file = fileDependencies[key];
     const ext = path.extname(file);
 
-    if (resolveExtensions.indexOf(ext) >= 0) {
-      return file;
-    }
-
-    return null;
+    return resolveExtensions.indexOf(ext) >= 0 && file;
   }).filter(a => a);
 }
 
+function searchAssets(assets, pattern) {
+  return Object.keys(assets).map(
+    key => pattern.test(key) && { key, asset: assets[key] }
+  ).filter(a => a);
+}
+
 module.exports = {
-  additionalFiles: searchAdditionalFiles
+  additionalFiles: searchAdditionalFiles,
+  assets: searchAssets
 };

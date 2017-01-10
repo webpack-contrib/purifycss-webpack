@@ -21,7 +21,7 @@ module.exports = function PurifyPlugin(options) {
               paths.concat(
                 search.additionalFiles(compilation.fileDependencies, resolveExtensions)
               ),
-              compilation.assets,
+              search.assets(compilation.assets, /\.css$/i),
               parse.options(options.purifyOptions)
             ).forEach(({ key, source }) => {
               compilation.assets[key] = source;
