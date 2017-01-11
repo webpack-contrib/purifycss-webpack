@@ -2,7 +2,7 @@
 
 # PurifyCSS Webpack Plugin
 
-This is a plugin for webpack that utilizes [PurifyCSS](https://github.com/purifycss/purifycss) to clean your CSS. You **should** use the [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin) with this.
+This is a plugin uses [PurifyCSS](https://github.com/purifycss/purifycss) to clean your CSS. You **should** use the [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin) with this.
 
 Without any CSS file being emitted as an asset, this plugin will not do a thing except idle about inside the compiler. You can also use the `file` plugin to drop a special CSS file into your output folder, but it is highly recommend these two plugins together.
 
@@ -49,13 +49,15 @@ module.exports = {
 
 And, that's it! Your scripts and view files will be scanned for classes, and those that are unused will be stripped off your CSS - aka. "purified".
 
+> You can pass an object (`<entry> -> [<absolute path>]`) to `paths` if you want to control the behavior per entry.
+
 ## Options
 
-This plugin, unlike the original PurifyCSS plugin, provides special features, such as scanning the dependency files and all kinds of files. To configure such behaviours, I will show you the options.
+This plugin, unlike the original PurifyCSS plugin, provides special features, such as scanning the dependency files. You can configure using the following fields:
 
 | Property            | Description
 |---------------------|------------
-| `extensions` | An array of extensions that should be given to PurifyCSS when determining classes. (defaults to webpack `resolve.extensions` config)
+| `extensions` | An array of extensions that should be given to PurifyCSS when determining classes. This defaults to webpack `resolve.extensions` configuration.
 | `paths`             | An array of absolute paths or a path to traverse. This also accepts an object (`<entry name> -> <paths>`). It can be a good idea [glob](http://npmjs.org/glob) these.
 | `purifyOptions`     | Pass [custom options to PurifyCSS](https://github.com/purifycss/purifycss#the-optional-options-argument).
 
