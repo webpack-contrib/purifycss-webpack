@@ -4,9 +4,12 @@
   "description": "PurifyCSS plugin for webpack",
   "main": "./src",
   "scripts": {
-    "test:all": "npm run test:lint",
-    "test": "echo \"No test suite for this version, yet.\" && exit 0",
-    "test:lint": "eslint . --ext .js --cache"
+    "test:all": "npm run test:coverage && npm run test:lint",
+    "test": "mocha tests/test-*",
+    "test:watch": "mocha --watch tests/test-*",
+    "test:coverage": "istanbul cover node_modules/.bin/_mocha tests/test-*",
+    "test:lint": "eslint . --ext .js --cache",
+    "preversion": "npm run test:all"
   },
   "repository": {
     "type": "git",
@@ -36,7 +39,9 @@
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
-    "git-prepush-hook": "^1.0.1"
+    "git-prepush-hook": "^1.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
   },
   "pre-push": [
     "test:all"

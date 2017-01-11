@@ -9,7 +9,7 @@ module.exports = function PurifyPlugin(options) {
         const resolveExtensions = (
           options.resolveExtensions || compiler.options.resolve.extensions
         );
-        const purifyOptions = parse.options(options.purifyOptions);
+        const purifyOptions = options.purifyOptions;
 
         compilation.plugin('additional-assets', (cb) => {
           (compilation.chunks.length === 1 || Array.isArray(paths) ?

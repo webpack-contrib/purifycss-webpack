@@ -6,9 +6,7 @@ function processSingle({
 }) {
   return purifyCSS(
     paths.concat(
-      search.additionalFiles(
-        dependencies, resolveExtensions
-      )
+      search.files(dependencies, resolveExtensions)
     ),
     search.assets(assets, /\.css$/i),
     purifyOptions
@@ -21,9 +19,7 @@ function processEntries({
   return [].concat.apply([], chunks.map(chunk => (
     purifyCSS(
       paths[chunk.name].concat(
-        search.additionalFiles(
-          chunk.modules, resolveExtensions, ({ resource }) => resource
-        )
+        search.files(chunk.modules, resolveExtensions, ({ resource }) => resource)
       ),
       search.assets(assets, /\.css$/i).filter(
         ({ key }) => key.indexOf(chunk.name) >= 0

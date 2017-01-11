@@ -1,25 +1,24 @@
 const path = require('path');
 
-function searchAdditionalFiles(
-  modules,
-  resolveExtensions,
-  getter = a => a
-) {
-  return Object.keys(modules).map((key) => {
-    const file = getter(modules[key]);
-    const ext = path.extname(file);
-
-    return resolveExtensions.indexOf(ext) >= 0 && file;
-  }).filter(a => a);
-}
-
-function searchAssets(assets, pattern) {
+function searchAssets(assets = [], pattern) {
   return Object.keys(assets).map(
     key => pattern.test(key) && { key, asset: assets[key] }
   ).filter(a => a);
 }
 
+function searchFiles(
+  modules = {},
+  extensions = [],
+  getter = a => a
+) {
+  return Object.keys(modules).map((key) => {
+    const file = getter(modules[key]);
+
+    return extensions.indexOf(path.extname(file)) >= 0 && file;
+  }).filter(a => a);
+}
+
 module.exports = {
-  additionalFiles: searchAdditionalFiles,
-  assets: searchAssets
+  assets: searchAssets,
+  files: searchFiles
 };

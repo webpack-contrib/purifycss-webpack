@@ -1,10 +1,3 @@
-function parseOptions(options) {
-  const ret = options || { minify: false };
-  ret.output = false;
-
-  return ret;
-}
-
 function parsePaths(paths) {
   const ret = paths || [];
 
@@ -17,6 +10,5 @@ function parsePaths(paths) {
 }
 
 module.exports = {
-  options: parseOptions,
   paths: parsePaths
 };

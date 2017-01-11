@@ -1,3 +1,5 @@
+[![build status](https://secure.travis-ci.org/webpack-contrib/purifycss-webpack-plugin.svg)](http://travis-ci.org/webpack-contrib/purifycss-webpack-plugin) [![bitHound Score](https://www.bithound.io/github/webpack-contrib/purifycss-webpack-plugin/badges/score.svg)](https://www.bithound.io/github/webpack-contrib/purifycss-webpack-plugin) [![codecov](https://codecov.io/gh/webpack-contrib/purifycss-webpack-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/webpack-contrib/purifycss-webpack-plugin)
+
 # PurifyCSS Webpack Plugin
 
 This is a plugin for webpack that utilizes [PurifyCSS](https://github.com/purifycss/purifycss) to clean your CSS. You **should** use the [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin) with this.
