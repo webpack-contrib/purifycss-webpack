@@ -2,5 +2,7 @@
 // const purifyCSS = require('../src/purify-css');
 
 describe('Purify CSS', function () {
-  // TODO
+  it('purifies', function () {
+    // TODO
+  });
 });

@@ -2,10 +2,14 @@
 // const process = require('../src/process');
 
 describe('Process single', function () {
-  // TODO
+  it('processes', function () {
+    // TODO
+  });
 });
 
 describe('Process entries', function () {
-  // TODO
+  it('processes', function () {
+    // TODO
+  });
 });
 
