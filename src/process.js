@@ -19,7 +19,7 @@ function processEntries({
   return [].concat.apply([], chunks.map(chunk => (
     purifyCSS(
       paths[chunk.name].concat(
-        search.files(chunk.modules, extensions, ({ resource }) => resource)
+        search.files(chunk.modules, extensions, file => file.resource)
       ),
       search.assets(assets, /\.css$/i).filter(
         ({ key }) => key.indexOf(chunk.name) >= 0

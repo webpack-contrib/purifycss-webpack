@@ -44,7 +44,7 @@ describe('Search files', function () {
     const matches = ['foobar.txt'];
 
     assert.deepEqual(
-      search.files(modules, extensions, ({ resource }) => resource),
+      search.files(modules, extensions, file => file.resource),
       matches
     );
   });
