@@ -23,11 +23,11 @@ exports.extractCSS = function extractCSS(paths) {
 
 exports.purifyCSS = function purifyCSS(
   paths,
-  resolveExtensions
+  extensions
 ) {
   return {
     plugins: [
-      new PurifyCSSPlugin({ paths, resolveExtensions })
+      new PurifyCSSPlugin({ paths, extensions })
     ]
   };
 };

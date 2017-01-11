@@ -2,11 +2,11 @@ const purifyCSS = require('./purify-css');
 const search = require('./search');
 
 function processSingle({
-  paths, dependencies, resolveExtensions, assets, purifyOptions
+  paths, dependencies, extensions, assets, purifyOptions
 }) {
   return purifyCSS(
     paths.concat(
-      search.files(dependencies, resolveExtensions)
+      search.files(dependencies, extensions)
     ),
     search.assets(assets, /\.css$/i),
     purifyOptions
@@ -14,12 +14,12 @@ function processSingle({
 }
 
 function processEntries({
-  paths, resolveExtensions, chunks, assets, purifyOptions
+  paths, extensions, chunks, assets, purifyOptions
 }) {
   return [].concat.apply([], chunks.map(chunk => (
     purifyCSS(
       paths[chunk.name].concat(
-        search.files(chunk.modules, resolveExtensions, ({ resource }) => resource)
+        search.files(chunk.modules, extensions, ({ resource }) => resource)
       ),
       search.assets(assets, /\.css$/i).filter(
         ({ key }) => key.indexOf(chunk.name) >= 0

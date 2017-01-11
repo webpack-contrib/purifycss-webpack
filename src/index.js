@@ -6,8 +6,8 @@ module.exports = function PurifyPlugin(options) {
     apply(compiler) {
       compiler.plugin('this-compilation', (compilation) => {
         const paths = parse.paths(options.paths);
-        const resolveExtensions = (
-          options.resolveExtensions || compiler.options.resolve.extensions
+        const extensions = (
+          options.extensions || compiler.options.resolve.extensions
         );
         const purifyOptions = options.purifyOptions;
 
@@ -16,14 +16,14 @@ module.exports = function PurifyPlugin(options) {
             process.single({
               paths,
               dependencies: compilation.fileDependencies,
-              resolveExtensions,
+              extensions,
               purifyOptions,
               assets: compilation.assets
             }) :
             process.entries({
               paths,
               chunks: compilation.chunks,
-              resolveExtensions,
+              extensions,
               purifyOptions,
               assets: compilation.assets
             })
