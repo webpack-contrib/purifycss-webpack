@@ -1,18 +1,6 @@
 const purifyCSS = require('./purify-css');
 const search = require('./search');
 
-function processSingle({
-  paths, dependencies, extensions, assets, purifyOptions
-}) {
-  return purifyCSS(
-    paths.concat(
-      search.files(dependencies, extensions)
-    ),
-    search.assets(assets, /\.css$/i),
-    purifyOptions
-  );
-}
-
 function processEntries({
   paths, extensions, chunks, assets, purifyOptions
 }) {
@@ -30,6 +18,5 @@ function processEntries({
 }
 
 module.exports = {
-  single: processSingle,
   entries: processEntries
 };

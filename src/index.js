@@ -1,5 +1,7 @@
 const parse = require('./parse');
+const purifyCSS = require('./purify-css');
 const process = require('./process');
+const search = require('./search');
 
 module.exports = function PurifyPlugin(options) {
   return {
@@ -13,13 +15,13 @@ module.exports = function PurifyPlugin(options) {
 
         compilation.plugin('additional-assets', (cb) => {
           (compilation.chunks.length === 1 || Array.isArray(paths) ?
-            process.single({
-              paths,
-              dependencies: compilation.fileDependencies,
-              extensions,
-              purifyOptions,
-              assets: compilation.assets
-            }) :
+            purifyCSS(
+              paths.concat(
+                search.files(compilation.fileDependencies, extensions)
+              ),
+              search.assets(compilation.assets, /\.css$/i),
+              purifyOptions
+            ) :
             process.entries({
               paths,
               chunks: compilation.chunks,
