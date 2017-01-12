@@ -2,7 +2,7 @@ const path = require('path');
 
 function searchAssets(assets = [], pattern) {
   return Object.keys(assets).map(
-    key => pattern.test(key) && { key, asset: assets[key] }
+    name => pattern.test(name) && { name, asset: assets[name] }
   ).filter(a => a);
 }
 
@@ -11,8 +11,8 @@ function searchFiles(
   extensions = [],
   getter = a => a
 ) {
-  return Object.keys(modules).map((key) => {
-    const file = getter(modules[key]);
+  return Object.keys(modules).map((name) => {
+    const file = getter(modules[name]);
 
     return extensions.indexOf(path.extname(file)) >= 0 && file;
   }).filter(a => a);

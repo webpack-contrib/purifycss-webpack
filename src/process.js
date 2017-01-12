@@ -22,7 +22,7 @@ function processEntries({
         search.files(chunk.modules, extensions, file => file.resource)
       ),
       search.assets(assets, /\.css$/i).filter(
-        ({ key }) => key.indexOf(chunk.name) >= 0
+        ({ name }) => name.indexOf(chunk.name) >= 0
       ),
       purifyOptions
     )

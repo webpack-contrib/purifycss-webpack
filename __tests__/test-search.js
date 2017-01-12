@@ -12,7 +12,7 @@ describe('Search assets', function () {
       'barbar.css': {}
     };
     const pattern = /\.txt$/i;
-    const matches = [{ key: 'foobar.txt', asset: {} }];
+    const matches = [{ name: 'foobar.txt', asset: {} }];
 
     assert.deepEqual(search.assets(modules, pattern), matches);
   });

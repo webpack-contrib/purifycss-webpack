@@ -27,8 +27,8 @@ module.exports = function PurifyPlugin(options) {
               purifyOptions,
               assets: compilation.assets
             })
-          ).forEach(({ key, source }) => {
-            compilation.assets[key] = source;
+          ).forEach(({ name, source }) => {
+            compilation.assets[name] = source;
           });
 
           cb();
