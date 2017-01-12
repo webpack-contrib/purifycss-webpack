@@ -1,6 +1,5 @@
 const parse = require('./parse');
 const purifyCSS = require('./purify-css');
-const process = require('./process');
 const search = require('./search');
 
 module.exports = function PurifyPlugin(options) {
@@ -24,14 +23,16 @@ module.exports = function PurifyPlugin(options) {
               search.assets(assets, /\.css$/i),
               purifyOptions
             ) :
-            process(chunks, ({ name, modules }) => purifyCSS(
-              paths[name].concat(
-                search.files(modules, extensions, file => file.resource)
-              ),
-              search.assets(assets, /\.css$/i).filter(
-                asset => asset.name.indexOf(name) >= 0
-              ),
-              purifyOptions
+            [].concat(...chunks.map(
+              ({ name, modules }) => purifyCSS(
+                paths[name].concat(
+                  search.files(modules, extensions, file => file.resource)
+                ),
+                search.assets(assets, /\.css$/i).filter(
+                  asset => asset.name.indexOf(name) >= 0
+                ),
+                purifyOptions
+              )
             ))
           ).forEach(({ name, source }) => {
             assets[name] = source;
