@@ -1,5 +1,6 @@
+const purify = require('purify-css');
+const ConcatSource = require('webpack-sources').ConcatSource;
 const parse = require('./parse');
-const purifyCSS = require('./purify-css');
 const search = require('./search');
 
 module.exports = function PurifyPlugin(options) {
@@ -44,3 +45,12 @@ module.exports = function PurifyPlugin(options) {
     }
   };
 };
+
+const purifyCSS = (files, assets, purifyOptions) => (
+  assets.map(({ name, asset }) => (
+    {
+      name,
+      source: new ConcatSource(purify(files, asset.source(), purifyOptions))
+    }
+  ))
+);
