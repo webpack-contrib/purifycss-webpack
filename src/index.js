@@ -14,20 +14,18 @@ module.exports = function PurifyPlugin(options) {
         const purifyOptions = options.purifyOptions;
 
         compilation.plugin('additional-assets', (cb) => {
-          const { assets, chunks } = compilation;
-
-          [].concat(...chunks.map(
+          [].concat(...compilation.chunks.map(
             ({ name, modules }) => purifyCSS(
               (paths[name] || paths).concat(
                 search.files(modules, extensions, file => file.resource)
               ),
-              search.assets(assets, /\.css$/i).filter(
+              search.assets(compilation.assets, /\.css$/i).filter(
                 asset => asset.name.indexOf(name) >= 0
               ),
               purifyOptions
             )
           )).forEach(({ name, source }) => {
-            assets[name] = source;
+            compilation.assets[name] = source;
           });
 
           cb();
