@@ -2,7 +2,7 @@
   "name": "purifycss-webpack-plugin",
   "version": "2.0.3",
   "description": "PurifyCSS plugin for webpack",
-  "main": "./src",
+  "main": "./lib",
   "scripts": {
     "build": "babel src -d lib",
     "test:all": "npm run test:coverage && npm run test:lint",
