@@ -12,18 +12,22 @@ module.exports = function PurifyPlugin(options) {
 
         compilation.plugin('additional-assets', (cb) => {
           [].concat(...compilation.chunks.map(
-            ({ name, modules }) => purifyCSS(
-              (paths[name] || paths).concat(
-                search.files(modules, extensions, file => file.resource)
-              ),
+            ({ name: chunkName, modules }) => (
               search.assets(compilation.assets, /\.css$/i).filter(
-                asset => asset.name.indexOf(name) >= 0
-              ),
-              options.purifyOptions
+                asset => asset.name.indexOf(chunkName) >= 0
+              ).forEach(({ name, asset }) => {
+                compilation.assets[name] = new ConcatSource(
+                  purify(
+                    (paths[chunkName] || paths).concat(
+                      search.files(modules, extensions, file => file.resource)
+                    ),
+                    asset.source(),
+                    options.purifyOptions
+                  )
+                );
+              })
             )
-          )).forEach(({ name, source }) => {
-            compilation.assets[name] = source;
-          });
+          ));
 
           cb();
         });
@@ -31,12 +35,3 @@ module.exports = function PurifyPlugin(options) {
     }
   };
 };
-
-const purifyCSS = (files, assets, purifyOptions) => (
-  assets.map(({ name, asset }) => (
-    {
-      name,
-      source: new ConcatSource(purify(files, asset.source(), purifyOptions))
-    }
-  ))
-);
