@@ -8,10 +8,7 @@ module.exports = function PurifyPlugin(options) {
     apply(compiler) {
       compiler.plugin('this-compilation', (compilation) => {
         const paths = parse.paths(options.paths);
-        const extensions = (
-          options.extensions || compiler.options.resolve.extensions
-        );
-        const purifyOptions = options.purifyOptions;
+        const extensions = options.extensions || compiler.options.resolve.extensions;
 
         compilation.plugin('additional-assets', (cb) => {
           [].concat(...compilation.chunks.map(
@@ -22,7 +19,7 @@ module.exports = function PurifyPlugin(options) {
               search.assets(compilation.assets, /\.css$/i).filter(
                 asset => asset.name.indexOf(name) >= 0
               ),
-              purifyOptions
+              options.purifyOptions
             )
           )).forEach(({ name, source }) => {
             compilation.assets[name] = source;
