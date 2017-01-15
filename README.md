@@ -2,9 +2,9 @@
 
 # PurifyCSS Webpack Plugin
 
-This is a plugin uses [PurifyCSS](https://github.com/purifycss/purifycss) to clean your CSS. You **should** use the [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin) with this.
+This plugin uses [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused selectors from your CSS. You **should** use it with the [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin).
 
-Without any CSS file being emitted as an asset, this plugin will not do a thing except idle about inside the compiler. You can also use the `file` plugin to drop a special CSS file into your output folder, but it is highly recommend these two plugins together.
+Without any CSS file being emitted as an asset, this plugin will do nothing. You can also use the `file` plugin to drop a CSS file into your output folder, but it is highly recommended to use the PurifyCSS plugin with the Extract Text plugin.
 
 ## Usage
 
