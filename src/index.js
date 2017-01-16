@@ -11,11 +11,15 @@ module.exports = function PurifyPlugin(options) {
         const extensions = options.extensions || compiler.options.resolve.extensions;
 
         compilation.plugin('additional-assets', (cb) => {
-          [].concat(...compilation.chunks.map(
+          // Go through chunks and purify as configured
+          compilation.chunks.forEach(
             ({ name: chunkName, modules }) => (
+              // Search for CSS assets to purify.
               search.assets(compilation.assets, /\.css$/i).filter(
                 asset => asset.name.indexOf(chunkName) >= 0
               ).forEach(({ name, asset }) => {
+                // Compile through Purify and attach to output. Note that this
+                // loses sourcemaps should there be any!
                 compilation.assets[name] = new ConcatSource(
                   purify(
                     (paths[chunkName] || paths).concat(
@@ -27,7 +31,7 @@ module.exports = function PurifyPlugin(options) {
                 );
               })
             )
-          ));
+          );
 
           cb();
         });

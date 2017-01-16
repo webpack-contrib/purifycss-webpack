@@ -10,7 +10,7 @@ exports.extractCSS = function extractCSS(paths) {
           include: paths,
           loader: ExtractTextPlugin.extract({
             fallbackLoader: 'style-loader',
-            loader: 'css-loader'
+            loader: 'css-loader?sourceMap'
           })
         }
       ]
