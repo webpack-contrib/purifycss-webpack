@@ -6,12 +6,13 @@ module.exports = {
     "mocha": true
   },
   "rules": {
+    "import/no-unresolved": 0, // fails at travis
+    "import/extensions": 0, // fails at travis
     "prefer-arrow-callback": 0, // mocha tests (recommendation)
     "func-names": 0, // mocha tests (recommendation)
     "comma-dangle": ["error", "never"], // personal preference
-    "no-param-reassign": 0, // consider enabling this again
-    "no-underscore-dangle": 0, // implementation detail (_highlights etc.)
+    "no-param-reassign": 0, // the plugin needs this (webpack design :( )
     "no-use-before-define": 0, // personal preference
-    "no-console": 0 // Allow logging
+    "no-console": 0 // allow logging
   }
 };
