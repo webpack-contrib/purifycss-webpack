@@ -61,6 +61,8 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 | `paths`             | An array of absolute paths or a path to traverse. This also accepts an object (`<entry name> -> <paths>`). It can be a good idea [glob](http://npmjs.org/glob) these.
 | `purifyOptions`     | Pass [custom options to PurifyCSS](https://github.com/purifycss/purifycss#the-optional-options-argument).
 
+> *purifycss-webpack-plugin* does **not** emit sourcemaps even if you enable `sourceMap` option on loaders!
+
 ## License
 
 ISC.
