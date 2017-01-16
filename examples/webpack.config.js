@@ -22,13 +22,13 @@ module.exports = [
       }
     },
     parts.extractCSS(),
-    parts.purifyCSS(
-      glob.sync(`${PATHS.app}/*`),
-      ['.html'],
-      {
+    parts.purifyCSS({
+      paths: glob.sync(`${PATHS.app}/*`),
+      extensions: ['.html'],
+      purifyOptions: {
         info: true
       }
-    )
+    })
   ),
   merge(
     {
@@ -43,8 +43,11 @@ module.exports = [
     },
     parts.extractCSS(),
     parts.purifyCSS({
-      first: glob.sync(`${PATHS.app}/*`),
-      second: glob.sync(`${PATHS.another}/*`)
-    }, ['.html'])
+      paths: {
+        first: glob.sync(`${PATHS.app}/*`),
+        second: glob.sync(`${PATHS.another}/*`)
+      },
+      extensions: ['.html']
+    })
   )
 ];

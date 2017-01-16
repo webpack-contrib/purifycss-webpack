@@ -21,14 +21,10 @@ exports.extractCSS = function extractCSS(paths) {
   };
 };
 
-exports.purifyCSS = function purifyCSS(
-  paths,
-  extensions,
-  purifyOptions
-) {
+exports.purifyCSS = function purifyCSS(options) {
   return {
     plugins: [
-      new PurifyCSSPlugin({ paths, extensions, purifyOptions })
+      new PurifyCSSPlugin(options)
     ]
   };
 };
