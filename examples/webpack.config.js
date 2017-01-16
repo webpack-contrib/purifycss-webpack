@@ -24,7 +24,10 @@ module.exports = [
     parts.extractCSS(),
     parts.purifyCSS(
       glob.sync(`${PATHS.app}/*`),
-      ['.html']
+      ['.html'],
+      {
+        info: true
+      }
     )
   ),
   merge(
