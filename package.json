@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/webpack-contrib/purifycss-webpack-plugin",
   "peerDependencies": {
-    "webpack": "^1.9.11 || ^2.1.0-beta.19 || ^2.2.0-rc.0"
+    "webpack": "^1.9 || 2 || ^2.1.0-beta || ^2.2.0-rc"
   },
   "dependencies": {
     "webpack-sources": "^0.1.4",
