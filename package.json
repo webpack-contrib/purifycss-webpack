@@ -2,15 +2,16 @@
   "name": "purifycss-webpack-plugin",
   "version": "2.0.3",
   "description": "PurifyCSS plugin for webpack",
-  "main": "./lib",
+  "main": "./dist",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d dist",
     "test:all": "npm run test:coverage && npm run test:lint",
     "test": "jest --",
     "test:coverage": "jest --coverage --",
     "test:watch": "jest --watch --",
-    "test:lint": "eslint . --ext .js --cache",
-    "preversion": "npm run test:all && npm run build && git commit --allow-empty -am \"Update dist\""
+    "test:lint": "eslint . --ext .js --ignore-path .gitignore --cache",
+    "preversion": "npm run test:all && npm run build && git commit --allow-empty -am \"Update dist\"",
+    "postinstall": "node lib/post_install.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
     "purify"
   ],
   "files": [
-    "lib"
+    "dist"
   ],
   "jest": {
     "collectCoverage": true,
