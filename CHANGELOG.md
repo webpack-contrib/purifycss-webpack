@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.1.1 / 2017-01-23
+==================
+
+  * Bug fix - Include `lib` to distribution to avoid installation failure.
+
 0.1.0 / 2017-01-23
 ==================
 
