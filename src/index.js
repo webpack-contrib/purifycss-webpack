@@ -8,8 +8,6 @@ module.exports = function PurifyPlugin(options) {
     apply(compiler) {
       compiler.plugin('this-compilation', (compilation) => {
         const paths = parse.paths(options.paths);
-        const extensions = options.extensions ||
-          compiler.options.resolve.extensions;
 
         // Output debug information through a callback pattern
         // to avoid unnecessary processing
@@ -22,7 +20,7 @@ module.exports = function PurifyPlugin(options) {
           compilation.chunks.forEach(
             ({ name: chunkName, modules }) => {
               const assetsToPurify = search.assets(
-                compilation.assets, /\.css$/i
+                compilation.assets, options.fileExtensions || ['.css']
               ).filter(
                 asset => asset.name.indexOf(chunkName) >= 0
               );
@@ -35,7 +33,7 @@ module.exports = function PurifyPlugin(options) {
               assetsToPurify.forEach(({ name, asset }) => {
                 const filesToSearch = (paths[chunkName] || paths).concat(
                   search.files(
-                    modules, extensions, file => file.resource
+                    modules, options.moduleExtensions || [], file => file.resource
                   )
                 );
 

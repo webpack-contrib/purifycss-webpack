@@ -11,10 +11,10 @@ describe('Search assets', function () {
       'foobar.txt': {},
       'barbar.css': {}
     };
-    const pattern = /\.txt$/i;
+    const extensions = ['.txt'];
     const matches = [{ name: 'foobar.txt', asset: {} }];
 
-    assert.deepEqual(search.assets(modules, pattern), matches);
+    assert.deepEqual(search.assets(modules, extensions), matches);
   });
 });
 

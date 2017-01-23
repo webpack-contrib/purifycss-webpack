@@ -1,8 +1,11 @@
 const path = require('path');
 
-function searchAssets(assets = [], pattern) {
+function searchAssets(
+  assets = [],
+  extensions = []
+) {
   return Object.keys(assets).map(
-    name => pattern.test(name) && { name, asset: assets[name] }
+    name => extensions.indexOf(path.extname(name)) >= 0 && { name, asset: assets[name] }
   ).filter(a => a);
 }
 

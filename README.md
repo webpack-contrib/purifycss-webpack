@@ -59,10 +59,11 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 
 | Property            | Description
 |---------------------|------------
-| `extensions` | An array of extensions that should be given to PurifyCSS when determining classes. This defaults to webpack `resolve.extensions` configuration. Often it's a good idea to override this with `['.html']` so it won't traverse `node_modules` `.js` files.
+| `fileExtensions`    | An array of file extensions for determining used classes. Defaults to `['.css']`.
+| `moduleExtensions`  | An array of file extensions for determining used classes within `node_modules`. Defaults to `[]`, but `['.html']` can be useful here.
 | `paths`             | An array of absolute paths or a path to traverse. This also accepts an object (`<entry name> -> <paths>`). It can be a good idea [glob](http://npmjs.org/glob) these.
 | `purifyOptions`     | Pass [custom options to PurifyCSS](https://github.com/purifycss/purifycss#the-optional-options-argument).
-| `verbose` | Set this flag to get verbose output from the plugin. This sets `purifyOptions.info`, but you can override `info` separately if you want less logging.
+| `verbose`           | Set this flag to get verbose output from the plugin. This sets `purifyOptions.info`, but you can override `info` separately if you want less logging.
 
 > The plugin does **not** emit sourcemaps even if you enable `sourceMap` option on loaders!
 
