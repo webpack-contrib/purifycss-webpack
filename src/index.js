@@ -4,6 +4,10 @@ const parse = require('./parse');
 const search = require('./search');
 
 module.exports = function PurifyPlugin(options) {
+  if (typeof options !== 'object' || !options.paths) {
+    throw new Error('You should pass an options object containing an array of paths at least');
+  }
+
   return {
     apply(compiler) {
       compiler.plugin('this-compilation', (compilation) => {
