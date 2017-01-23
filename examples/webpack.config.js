@@ -23,11 +23,9 @@ module.exports = [
     },
     parts.extractCSS(),
     parts.purifyCSS({
+      verbose: true,
       paths: glob.sync(`${PATHS.app}/*`),
-      extensions: ['.html'],
-      purifyOptions: {
-        info: true
-      }
+      extensions: ['.html']
     })
   ),
   merge(
