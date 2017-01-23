@@ -1,9 +1,9 @@
 ## purifycss-webpack
 
-0.1.0 / 2017-XX-XX
+0.1.0 / 2017-01-23
 ==================
 
-  * TODO
+  * Complete rewrite with more functionality and a new API. Different name due to npm issues.
 
 ## purifycss-webpack-plugin
 
