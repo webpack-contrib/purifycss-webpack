@@ -1,17 +1,19 @@
-[![build status](https://secure.travis-ci.org/webpack-contrib/purifycss-webpack-plugin.svg)](http://travis-ci.org/webpack-contrib/purifycss-webpack-plugin) [![bitHound Score](https://www.bithound.io/github/webpack-contrib/purifycss-webpack-plugin/badges/score.svg)](https://www.bithound.io/github/webpack-contrib/purifycss-webpack-plugin) [![codecov](https://codecov.io/gh/webpack-contrib/purifycss-webpack-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/webpack-contrib/purifycss-webpack-plugin)
+[![build status](https://secure.travis-ci.org/webpack-contrib/purifycss-webpack.svg)](http://travis-ci.org/webpack-contrib/purifycss-webpack) [![bitHound Score](https://www.bithound.io/github/webpack-contrib/purifycss-webpack/badges/score.svg)](https://www.bithound.io/github/webpack-contrib/purifycss-webpack) [![codecov](https://codecov.io/gh/webpack-contrib/purifycss-webpack/branch/master/graph/badge.svg)](https://codecov.io/gh/webpack-contrib/purifycss-webpack)
 
-# PurifyCSS Webpack Plugin
+# PurifyCSS for Webpack
 
 This plugin uses [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused selectors from your CSS. You **should** use it with the [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin).
 
 Without any CSS file being emitted as an asset, this plugin will do nothing. You can also use the `file` plugin to drop a CSS file into your output folder, but it is highly recommended to use the PurifyCSS plugin with the Extract Text plugin.
+
+> This plugin replaces earlier [purifycss-webpack-plugin](https://www.npmjs.com/package/purifycss-webpack-plugin) and it has a different API!
 
 ## Usage
 
 First, install it:
 
 ```bash
-npm install purifycss-webpack-plugin --save-dev
+npm install purifycss-webpack --save-dev
 ```
 
 Then configure as follows:
@@ -20,7 +22,7 @@ Then configure as follows:
 const path = require('path');
 const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const PurifyPlugin = require('purifycss-webpack-plugin');
+const PurifyPlugin = require('purifycss-webpack');
 
 module.exports = {
   entry: {...},
@@ -61,7 +63,7 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 | `paths`             | An array of absolute paths or a path to traverse. This also accepts an object (`<entry name> -> <paths>`). It can be a good idea [glob](http://npmjs.org/glob) these.
 | `purifyOptions`     | Pass [custom options to PurifyCSS](https://github.com/purifycss/purifycss#the-optional-options-argument).
 
-> *purifycss-webpack-plugin* does **not** emit sourcemaps even if you enable `sourceMap` option on loaders!
+> The plugin does **not** emit sourcemaps even if you enable `sourceMap` option on loaders!
 
 ## License
 
