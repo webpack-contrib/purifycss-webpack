@@ -29,4 +29,16 @@ describe('Validate options', function () {
     assert.ok(!result.isValid);
     assert.ok(result.error);
   });
+
+  it('fileExtensions have defaults', function () {
+    const paths = ['./foo'];
+    const data = { paths };
+
+    // Currently this mutates data with defaults due to ajv design. It
+    // might be a good idea to change that behavior, though.
+    const result = validateOptions(data);
+
+    assert.deepEqual(data, { paths, fileExtensions: ['.css'] });
+    assert.ok(!result.error);
+  });
 });

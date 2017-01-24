@@ -2,7 +2,9 @@ import Ajv from 'ajv';
 import schema from './schema';
 
 function validateOptions(data) {
-  const ajv = new Ajv();
+  const ajv = new Ajv({
+    useDefaults: true // This mutates the original data with defaults!
+  });
   const isValid = ajv.validate(schema, data);
 
   return {

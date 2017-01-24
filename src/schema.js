@@ -7,7 +7,8 @@ export default {
       type: 'array',
       items: {
         type: 'string'
-      }
+      },
+      default: ['.css']
     },
     moduleExtensions: {
       type: 'array',
