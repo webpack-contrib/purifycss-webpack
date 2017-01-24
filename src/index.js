@@ -1,8 +1,8 @@
-const purify = require('purify-css');
-const ConcatSource = require('webpack-sources').ConcatSource;
-const parse = require('./parse');
-const search = require('./search');
-const validateOptions = require('./validate-options').default;
+import purify from 'purify-css';
+import { ConcatSource } from 'webpack-sources';
+import * as parse from './parse';
+import * as search from './search';
+import validateOptions from './validate-options';
 
 module.exports = function PurifyPlugin(options) {
   const validation = validateOptions(options);
