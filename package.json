@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/webpack-contrib/purifycss-webpack",
   "peerDependencies": {
-    "webpack": "^1.9 || 2 || ^2.1.0-beta || ^2.2.0-rc"
+    "webpack": "^1.9 || ^2.2.0 || ^2.1.0-beta || ^2.2.0-rc"
   },
   "dependencies": {
     "ajv": "^4.11.2",

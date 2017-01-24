@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.2.1 / 2017-01-24
+==================
+
+  * Bug fix - Include webpack 2 properly to the peer dependency.
+
 0.2.0 / 2017-01-24
 ==================
 
