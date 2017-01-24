@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.2.2 / 2017-01-24
+==================
+
+  * Chore - Push option defaults to schema.
+
 0.2.1 / 2017-01-24
 ==================
 
