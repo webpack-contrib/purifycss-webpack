@@ -46,8 +46,9 @@
     "webpack": "^1.9 || 2 || ^2.1.0-beta || ^2.2.0-rc"
   },
   "dependencies": {
-    "webpack-sources": "^0.1.4",
-    "purify-css": "^1.1.9"
+    "ajv": "^4.11.2",
+    "purify-css": "^1.1.9",
+    "webpack-sources": "^0.1.4"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

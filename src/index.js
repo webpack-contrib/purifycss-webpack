@@ -2,10 +2,13 @@ const purify = require('purify-css');
 const ConcatSource = require('webpack-sources').ConcatSource;
 const parse = require('./parse');
 const search = require('./search');
+const validateOptions = require('./validate-options').default;
 
 module.exports = function PurifyPlugin(options) {
-  if (typeof options !== 'object' || !options.paths) {
-    throw new Error('You should pass an options object containing an array of paths at least');
+  const validation = validateOptions(options);
+
+  if (!validation.isValid) {
+    throw new Error(validation.error);
   }
 
   return {

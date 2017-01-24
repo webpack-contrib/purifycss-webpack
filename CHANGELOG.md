@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.2.0 / 2017-01-24
+==================
+
+  * Feature - Add stricter plugin option validation.
+
 0.1.1 / 2017-01-23
 ==================
 

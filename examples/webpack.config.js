@@ -25,7 +25,7 @@ module.exports = [
     parts.purifyCSS({
       verbose: true,
       paths: glob.sync(`${PATHS.app}/*`),
-      extensions: ['.css', '.html']
+      fileExtensions: ['.css']
     })
   ),
   merge(
@@ -45,7 +45,7 @@ module.exports = [
         first: glob.sync(`${PATHS.app}/*`),
         second: glob.sync(`${PATHS.another}/*`)
       },
-      extensions: ['.css', '.html']
+      fileExtensions: ['.css']
     })
   )
 ];
