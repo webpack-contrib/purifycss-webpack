@@ -31,11 +31,38 @@ describe('Search files', function () {
     assert.deepEqual(search.files(modules, extensions), matches);
   });
 
+  it('does not fail with missing modules', function () {
+    const modules = ['foobar.txt', '', 'barbar.css'];
+    const extensions = ['.txt'];
+    const matches = ['foobar.txt'];
+
+    assert.deepEqual(search.files(modules, extensions), matches);
+  });
+
   it('returns matches based on extension with a customized getter', function () {
     const modules = {
       foobar: {
         resource: 'foobar.txt'
       },
+      barbar: {
+        resource: 'barbar.css'
+      }
+    };
+    const extensions = ['.txt'];
+    const matches = ['foobar.txt'];
+
+    assert.deepEqual(
+      search.files(modules, extensions, file => file.resource),
+      matches
+    );
+  });
+
+  it('does not fail with missing modules when a getter fails', function () {
+    const modules = {
+      foobar: {
+        resource: 'foobar.txt'
+      },
+      demo: {},
       barbar: {
         resource: 'barbar.css'
       }

@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.3.1 / 2017-01-26
+==================
+
+  * Bug fix - Make `search.files` more robust against potentially missing data. #67
+
 0.3.0 / 2017-01-26
 ==================
 

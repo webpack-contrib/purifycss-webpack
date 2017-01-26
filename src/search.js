@@ -17,6 +17,10 @@ function searchFiles(
   return Object.keys(modules).map((name) => {
     const file = getter(modules[name]);
 
+    if (!file) {
+      return null;
+    }
+
     return extensions.indexOf(path.extname(file)) >= 0 && file;
   }).filter(a => a);
 }
