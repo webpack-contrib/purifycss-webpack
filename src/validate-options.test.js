@@ -30,7 +30,7 @@ describe('Validate options', function () {
     assert.ok(result.error);
   });
 
-  it('fileExtensions have defaults', function () {
+  it('styleExtensions have defaults', function () {
     const paths = ['./foo'];
     const data = { paths };
 
@@ -38,7 +38,7 @@ describe('Validate options', function () {
     // might be a good idea to change that behavior, though.
     const result = validateOptions(data);
 
-    assert.deepEqual(data, { paths, fileExtensions: ['.css'] });
+    assert.deepEqual(data, { paths, styleExtensions: ['.css'] });
     assert.ok(!result.error);
   });
 });

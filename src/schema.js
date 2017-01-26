@@ -3,7 +3,7 @@ export default {
   additionalProperties: false,
   type: 'object',
   properties: {
-    fileExtensions: {
+    styleExtensions: {
       type: 'array',
       items: {
         type: 'string'

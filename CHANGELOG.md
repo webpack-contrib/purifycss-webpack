@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.3.0 / 2017-01-26
+==================
+
+  * Breaking - Rename `fileExtensions` as `styleExtensions`. This communicates better how it works underneath.
+
 0.2.2 / 2017-01-24
 ==================
 

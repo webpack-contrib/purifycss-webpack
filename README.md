@@ -59,7 +59,7 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 
 | Property            | Description
 |---------------------|------------
-| `fileExtensions`    | An array of file extensions for determining used classes. Defaults to `['.css']`.
+| `styleExtensions`   | An array of file extensions for determining used classes within style files. Defaults to `['.css']`.
 | `moduleExtensions`  | An array of file extensions for determining used classes within `node_modules`. Defaults to `[]`, but `['.html']` can be useful here.
 | `paths`             | An array of absolute paths or a path to traverse. This also accepts an object (`<entry name> -> <paths>`). It can be a good idea [glob](http://npmjs.org/glob) these.
 | `purifyOptions`     | Pass [custom options to PurifyCSS](https://github.com/purifycss/purifycss#the-optional-options-argument).
