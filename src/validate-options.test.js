@@ -1,5 +1,5 @@
 const assert = require('assert');
-const validateOptions = require('../src/validate-options').default;
+const validateOptions = require('./validate-options').default;
 
 describe('Validate options', function () {
   it('fails empty data', function () {

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const parse = require('../src/parse');
+const parse = require('./parse');
 
 describe('Parse paths', function () {
   it('returns an empty array by default', function () {

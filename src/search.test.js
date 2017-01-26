@@ -1,5 +1,5 @@
 const assert = require('assert');
-const search = require('../src/search');
+const search = require('./search');
 
 describe('Search assets', function () {
   it('returns nothing if nothing is passed', function () {
