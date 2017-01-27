@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.3.2 / 2017-01-27
+==================
+
+  * Bug fix - Fail at validation if entry keys don't match with path keys. #67
+
 0.3.1 / 2017-01-26
 ==================
 

@@ -6,14 +6,19 @@ import validateOptions from './validate-options';
 import schema from './schema';
 
 module.exports = function PurifyPlugin(options) {
-  const validation = validateOptions(schema, options);
-
-  if (!validation.isValid) {
-    throw new Error(validation.error);
-  }
-
   return {
     apply(compiler) {
+      const validation = validateOptions(
+        schema({
+          entry: compiler.options.entry
+        }),
+        options
+      );
+
+      if (!validation.isValid) {
+        throw new Error(validation.error);
+      }
+
       compiler.plugin('this-compilation', (compilation) => {
         const paths = parse.paths(options.paths);
 
