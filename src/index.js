@@ -20,7 +20,7 @@ module.exports = function PurifyPlugin(options) {
       }
 
       compiler.plugin('this-compilation', (compilation) => {
-        const paths = parse.paths(options.paths);
+        const entryPaths = parse.entryPaths(options.paths);
 
         // Output debug information through a callback pattern
         // to avoid unnecessary processing
@@ -44,7 +44,7 @@ module.exports = function PurifyPlugin(options) {
               ]);
 
               assetsToPurify.forEach(({ name, asset }) => {
-                const filesToSearch = (paths[chunkName] || paths).concat(
+                const filesToSearch = parse.entries(entryPaths, chunkName).concat(
                   search.files(
                     modules, options.moduleExtensions || [], file => file.resource
                   )

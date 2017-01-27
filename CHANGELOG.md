@@ -3,6 +3,7 @@
 0.4.0 / 2017-01-27
 ==================
 
+  * Bug fix - Support `<key>: <path>` style entries. #71
   * Bug fix - Fail at validation if entry keys don't match with path keys. #67
   * Feature - Expose `minimize` flag for CSS minification.
 
