@@ -3,9 +3,10 @@ import { ConcatSource } from 'webpack-sources';
 import * as parse from './parse';
 import * as search from './search';
 import validateOptions from './validate-options';
+import schema from './schema';
 
 module.exports = function PurifyPlugin(options) {
-  const validation = validateOptions(options);
+  const validation = validateOptions(schema, options);
 
   if (!validation.isValid) {
     throw new Error(validation.error);
