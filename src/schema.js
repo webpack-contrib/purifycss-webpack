@@ -10,6 +10,9 @@ const schema = ({ entry } = {}) => ({
       },
       default: ['.css']
     },
+    minimize: {
+      type: 'boolean'
+    },
     moduleExtensions: {
       type: 'array',
       items: {

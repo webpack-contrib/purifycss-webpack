@@ -24,6 +24,7 @@ module.exports = [
     parts.extractCSS(),
     parts.purifyCSS({
       verbose: true,
+      minimize: true,
       paths: glob.sync(`${PATHS.app}/*`),
       styleExtensions: ['.css']
     })

@@ -61,6 +61,7 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 |---------------------|------------
 | `styleExtensions`   | An array of file extensions for determining used classes within style files. Defaults to `['.css']`.
 | `moduleExtensions`  | An array of file extensions for determining used classes within `node_modules`. Defaults to `[]`, but `['.html']` can be useful here.
+| `minimize`          | Enable CSS minification. Alias to `purifyOptions.minify`. Disabled by default.
 | `paths`             | An array of absolute paths or a path to traverse. This also accepts an object (`<entry name> -> <paths>`). It can be a good idea [glob](http://npmjs.org/glob) these.
 | `purifyOptions`     | Pass [custom options to PurifyCSS](https://github.com/purifycss/purifycss#the-optional-options-argument).
 | `verbose`           | Set this flag to get verbose output from the plugin. This sets `purifyOptions.info`, but you can override `info` separately if you want less logging.

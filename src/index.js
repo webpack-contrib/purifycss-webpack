@@ -63,6 +63,7 @@ module.exports = function PurifyPlugin(options) {
                     asset.source(),
                     {
                       info: options.verbose,
+                      minify: options.minimize,
                       ...options.purifyOptions
                     }
                   )
