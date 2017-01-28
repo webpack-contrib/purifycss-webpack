@@ -15,7 +15,7 @@ function parseEntries(paths, chunkName) {
   }
 
   if (!(chunkName in paths)) {
-    throw new Error(`Failed to find ${chunkName} in ${paths.join(', ')}`);
+    return [];
   }
 
   const ret = paths[chunkName];

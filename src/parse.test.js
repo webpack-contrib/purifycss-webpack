@@ -50,16 +50,20 @@ describe('Parse entries', function () {
     assert.deepEqual(parse.entries(paths, 'foobar'), [entryPaths]);
   });
 
-  it('throws an error if failed to find entry', function () {
+  it('returns an empty array if failed to find entry', function () {
     const paths = {
       foobar: 'a'
     };
 
-    assert.throws(
-      () => {
-        parse.entries(paths, 'barfoo');
-      },
-      Error
-    );
+    assert.deepEqual(parse.entries(paths, 'barbar'), []);
+  });
+
+  it('returns an empty array if failed to find entry with multiple paths', function () {
+    const paths = {
+      foobar: 'a',
+      barbar: 'b'
+    };
+
+    assert.deepEqual(parse.entries(paths, 'foofoo'), []);
   });
 });

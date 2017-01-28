@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.4.1 / 2017-01-28
+==================
+
+  * Bug fix - If an entry name does not match while processing, skip it. #72
+
 0.4.0 / 2017-01-27
 ==================
 
