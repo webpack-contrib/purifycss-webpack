@@ -29,6 +29,7 @@
   ],
   "jest": {
     "collectCoverage": true,
+    "collectCoverageFrom": "src/**/*.js",
     "moduleFileExtensions": [
       "js"
     ],
