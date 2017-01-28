@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.4.2 / 2017-01-28
+==================
+
+  * Feature - Show nicer errors if there are extra fields.
+
 0.4.1 / 2017-01-28
 ==================
 

@@ -2,7 +2,8 @@ import Ajv from 'ajv';
 
 function validateOptions(schema, data) {
   const ajv = new Ajv({
-    useDefaults: true // This mutates the original data with defaults!
+    useDefaults: true, // This mutates the original data with defaults!
+    errorDataPath: 'property'
   });
   const isValid = ajv.validate(schema, data);
 
