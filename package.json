@@ -68,6 +68,7 @@
     "jest": "^18.1.0"
   },
   "pre-push": [
+    "build",
     "test:all"
   ]
 }
