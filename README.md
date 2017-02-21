@@ -1,6 +1,19 @@
-[![build status](https://secure.travis-ci.org/webpack-contrib/purifycss-webpack.svg)](http://travis-ci.org/webpack-contrib/purifycss-webpack) [![bitHound Score](https://www.bithound.io/github/webpack-contrib/purifycss-webpack/badges/score.svg)](https://www.bithound.io/github/webpack-contrib/purifycss-webpack) [![codecov](https://codecov.io/gh/webpack-contrib/purifycss-webpack/branch/master/graph/badge.svg)](https://codecov.io/gh/webpack-contrib/purifycss-webpack)
+[![npm][npm]][npm-url]
+[![deps][deps]][deps-url]
+[![test][test]][test-url]
+[![coverage][cover]][cover-url]
+[![quality][quality]][quality-url]
+[![chat][chat]][chat-url]
 
-# PurifyCSS for Webpack
+<div align="center">
+  <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
+  <a href="https://github.com/webpack/webpack">
+    <img width="200" height="200" vspace="" hspace="25"
+      src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
+  </a>
+  <h1>PurifyCSS Plugin</h1>
+  <p>PurifyCSS for Webpack.<p>
+</div>
 
 This plugin uses [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused selectors from your CSS. You **should** use it with the [extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin).
 
@@ -8,15 +21,15 @@ Without any CSS file being emitted as an asset, this plugin will do nothing. You
 
 > This plugin replaces earlier [purifycss-webpack-plugin](https://www.npmjs.com/package/purifycss-webpack-plugin) and it has a different API!
 
-## Usage
-
-First, install it:
+<h2 align="center">Install</h2>
 
 ```bash
-npm install purifycss-webpack --save-dev
+npm i -D purifycss-webpack
 ```
 
-Then configure as follows:
+<h2 align="center">Usage</h2>
+
+Configure as follows:
 
 ```javascript
 const path = require('path');
@@ -53,7 +66,7 @@ And, that's it! Your scripts and view files will be scanned for classes, and tho
 
 > You can pass an object (`<entry> -> [<absolute path>]`) to `paths` if you want to control the behavior per entry.
 
-## Options
+<h2 align="center">Options</h2>
 
 This plugin, unlike the original PurifyCSS plugin, provides special features, such as scanning the dependency files. You can configure using the following fields:
 
@@ -68,6 +81,54 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 
 > The plugin does **not** emit sourcemaps even if you enable `sourceMap` option on loaders!
 
-## License
+<h2 align="center">Maintainers</h2>
 
-ISC.
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/166921?v=3&s=150">
+        </br>
+        <a href="https://github.com/bebraw">Juho Vepsäläinen</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars2.githubusercontent.com/u/8420490?v=3&s=150">
+        </br>
+        <a href="https://github.com/d3viant0ne">Joshua Wiens</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/533616?v=3&s=150">
+        </br>
+        <a href="https://github.com/SpaceK33z">Kees Kluskens</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/3408176?v=3&s=150">
+        </br>
+        <a href="https://github.com/TheLarkInn">Sean Larkin</a>
+      </td>
+    </tr>
+  <tbody>
+</table>
+
+
+[npm]: https://img.shields.io/npm/v/purifycss-webpack.svg
+[npm-url]: https://npmjs.com/package/purifycss-webpack
+
+[deps]: https://david-dm.org/webpack-contrib/purifycss-webpack.svg
+[deps-url]: https://david-dm.org/webpack-contrib/purifycss-webpack
+
+[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[chat-url]: https://gitter.im/webpack/webpack
+
+[test]: https://secure.travis-ci.org/webpack-contrib/purifycss-webpack.svg
+[test-url]: http://travis-ci.org/webpack-contrib/purifycss-webpack
+
+[cover]: https://codecov.io/gh/webpack-contrib/purifycss-webpack/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/webpack-contrib/purifycss-webpack
+
+[quality]: https://www.bithound.io/github/webpack-contrib/purifycss-webpack/badges/score.svg
+[quality-url]: https://www.bithound.io/github/webpack-contrib/purifycss-webpack
