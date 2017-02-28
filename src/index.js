@@ -31,11 +31,11 @@ module.exports = function PurifyPlugin(options) {
         compilation.plugin('additional-assets', (cb) => {
           // Go through chunks and purify as configured
           compilation.chunks.forEach(
-            ({ name: chunkName, modules }) => {
+            ({ name: chunkName, files, modules }) => {
               const assetsToPurify = search.assets(
                 compilation.assets, options.styleExtensions
               ).filter(
-                asset => asset.name.indexOf(chunkName) >= 0
+                asset => files.indexOf(asset.name) >= 0
               );
 
               output(() => [
