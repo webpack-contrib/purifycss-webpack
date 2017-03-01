@@ -1,3 +1,4 @@
+import fs from 'fs';
 import purify from 'purify-css';
 import { ConcatSource } from 'webpack-sources';
 import * as parse from './parse';
@@ -21,6 +22,10 @@ module.exports = function PurifyPlugin(options) {
 
       compiler.plugin('this-compilation', (compilation) => {
         const entryPaths = parse.entryPaths(options.paths);
+
+        parse.flatten(entryPaths).forEach((p) => {
+          if (!fs.existsSync(p)) throw new Error(`Path ${p} does not exist.`);
+        });
 
         // Output debug information through a callback pattern
         // to avoid unnecessary processing
