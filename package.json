@@ -1,6 +1,6 @@
 {
   "name": "purifycss-webpack",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "PurifyCSS for webpack",
   "main": "./dist",
   "scripts": {
@@ -75,7 +75,9 @@
   ],
   "watch": {
     "build": {
-      "patterns": ["src"],
+      "patterns": [
+        "src"
+      ],
       "extensions": "js",
       "quiet": false
     }
