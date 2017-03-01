@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.4.3 / 2017-03-01
+==================
+
+  * Bug fix - Fix chunk file match dependency on [name]. #86
+
 0.4.2 / 2017-01-28
 ==================
 
