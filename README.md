@@ -95,13 +95,15 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-            query: {
-              localIdentName: 'PURIFY_[hash:base64:5]',
-              modules: true
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                localIdentName: 'PURIFY_[hash:base64:5]',
+                modules: true
+              }
             }
-          }]
+          ]
         })
       }
     ]
