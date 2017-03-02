@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.5.0 / 2017-03-02
+==================
+
+  * Feature - Add strict validation against `paths`. #88
+
 0.4.3 / 2017-03-01
 ==================
 
