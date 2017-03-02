@@ -19,6 +19,20 @@ describe('Parse entry paths', function () {
   });
 });
 
+describe('Flatten entry paths', function () {
+  it('returns an array as itself', function () {
+    const a = ['a', 'b', 'c'];
+
+    assert.deepEqual(parse.flatten(a), a);
+  });
+
+  it('returns an object of arrays as one flat array', function () {
+    const o = { a: ['a', 'b'], b: ['c', 'd'] };
+
+    assert.deepEqual(parse.flatten(o), ['a', 'b', 'c', 'd']);
+  });
+});
+
 describe('Parse entries', function () {
   it('returns paths if there is no chunk name', function () {
     const paths = ['a', 'b', 'c'];

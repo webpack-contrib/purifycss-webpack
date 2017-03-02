@@ -9,6 +9,12 @@ function parseEntryPaths(paths) {
   return ret;
 }
 
+function flattenEntryPaths(paths) {
+  return Array.isArray(paths) ?
+    paths :
+    Object.keys(paths).reduce((acc, val) => [...acc, ...paths[val]], []);
+}
+
 function parseEntries(paths, chunkName) {
   if (Array.isArray(paths)) {
     return paths;
@@ -25,5 +31,6 @@ function parseEntries(paths, chunkName) {
 
 module.exports = {
   entryPaths: parseEntryPaths,
+  flatten: flattenEntryPaths,
   entries: parseEntries
 };
