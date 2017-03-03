@@ -4,7 +4,7 @@
   "description": "PurifyCSS for webpack",
   "main": "./dist",
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "rimraf dist && babel src -d dist",
     "build:watch": "npm-watch",
     "test:all": "npm run test:coverage && npm run test:lint",
     "test": "jest --",
@@ -67,7 +67,8 @@
     "eslint-plugin-react": "^6.9.0",
     "git-prepush-hook": "^1.0.1",
     "jest": "^18.1.0",
-    "npm-watch": "^0.1.8"
+    "npm-watch": "^0.1.8",
+    "rimraf": "^2.6.1"
   },
   "pre-push": [
     "build",
