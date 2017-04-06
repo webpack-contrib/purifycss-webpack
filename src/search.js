@@ -10,7 +10,7 @@ function searchAssets(
       if (/\.(css\?).*$/.test(name)) {
         nameCleaned = name.substr(0, name.lastIndexOf('?')); // ignore hash on file like style.css?7ec000f0d0d347
       }
-      extensions.indexOf(path.extname(nameCleaned)) >= 0 && { name, asset: assets[name] }
+      return extensions.indexOf(path.extname(nameCleaned)) >= 0 && { name, asset: assets[name] }
     }
   ).filter(a => a);
 }
