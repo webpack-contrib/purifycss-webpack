@@ -1,6 +1,6 @@
 {
   "name": "purifycss-webpack",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "PurifyCSS for webpack",
   "main": "./dist",
   "scripts": {
