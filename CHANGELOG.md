@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.6.0 / 2017-04-07
+==================
+
+  * Feature - Allow asset names to contain `?`. Example: `style.css?218aa9358a709a5a0a12`. #94
+
 0.5.0 / 2017-03-02
 ==================
 
