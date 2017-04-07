@@ -5,13 +5,13 @@ function searchAssets(
   extensions = []
 ) {
   return Object.keys(assets).map(
-    (name) => {
-      let nameCleaned = name;
-      if (/\.(css\?).*$/.test(name)) {
-        nameCleaned = name.substr(0, name.lastIndexOf('?')); // ignore hash on file like style.css?7ec000f0d0d347
-      }
-      return extensions.indexOf(path.extname(nameCleaned)) >= 0 && { name, asset: assets[name] };
-    }
+    name => (
+      extensions.indexOf(
+        path.extname(
+          name.indexOf('?') >= 0 ? name.split('?').slice(0, -1).join('') : name
+        )
+      ) >= 0 && { name, asset: assets[name] }
+    )
   ).filter(a => a);
 }
 

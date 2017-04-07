@@ -16,6 +16,17 @@ describe('Search assets', function () {
 
     assert.deepEqual(search.assets(modules, extensions), matches);
   });
+
+  it('returns matches if they have query', function () {
+    const modules = {
+      'foobar.txt?123': {},
+      'barbar.css': {}
+    };
+    const extensions = ['.txt'];
+    const matches = [{ name: 'foobar.txt?123', asset: {} }];
+
+    assert.deepEqual(search.assets(modules, extensions), matches);
+  });
 });
 
 describe('Search files', function () {
