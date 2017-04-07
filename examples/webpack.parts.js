@@ -16,7 +16,7 @@ exports.extractCSS = function extractCSS(paths) {
       ]
     },
     plugins: [
-      new ExtractTextPlugin('[name].css')
+      new ExtractTextPlugin('[name].css?[hash]')
     ]
   };
 };
