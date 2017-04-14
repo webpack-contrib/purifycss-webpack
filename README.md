@@ -85,7 +85,7 @@ This plugin, unlike the original PurifyCSS plugin, provides special features, su
 
 PurifyCSS doesn't support classes that have been namespaced with CSS Modules. However, by adding a static string to `css-loader`'s `localIdentName`, you can effectively whitelist these namespaced classes.
 
-In this example, `PURIFY` will be our whitelisted string. **Note:** Make sure this string doesn't occur in any of your other CSS class names. Keep in mind that whatever you choose will end up in your application at runtime - try to keep it short!
+In this example, `purify` will be our whitelisted string. **Note:** Make sure this string doesn't occur in any of your other CSS class names. Keep in mind that whatever you choose will end up in your application at runtime - try to keep it short!
 
 ```javascript
 module.exports = {
@@ -99,7 +99,7 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                localIdentName: 'PURIFY_[hash:base64:5]',
+                localIdentName: 'purify_[hash:base64:5]',
                 modules: true
               }
             }
@@ -112,7 +112,7 @@ module.exports = {
     ...,
     new PurifyCSSPlugin({
       purifyOptions: {
-        whitelist: ['*PURIFY*']
+        whitelist: ['*purify*']
       }
     })
   ]
