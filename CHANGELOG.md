@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.6.1 / 2017-04-14
+==================
+
+  * Docs - Fix CSS Modules example (prefix has to be lowercase to work).
+
 0.6.0 / 2017-04-07
 ==================
 
