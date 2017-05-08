@@ -69,10 +69,11 @@ In order to use this plugin to look into multiple paths you will need to:
 1. npm install --save glob-all
 2. Add const glob = require('glob-all'); at the top of your webpack config
 3. Then you can pass your paths to an array, like so:
-```
+
+```javascript
 paths: glob.sync([
-    path.join(__dirname, '.php'),
-    path.join(__dirname, 'partials/.php')
+  path.join(__dirname, '.php'),
+  path.join(__dirname, 'partials/.php')
 ]),
 ```
 
