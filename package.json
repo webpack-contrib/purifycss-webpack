@@ -45,11 +45,10 @@
   },
   "homepage": "https://github.com/webpack-contrib/purifycss-webpack",
   "peerDependencies": {
-    "webpack": "^1.9 || ^2.2.0 || ^2.1.0-beta || ^2.2.0-rc"
+    "purify-css": ">= 1.0.0 < 2.0.0"
   },
   "dependencies": {
     "ajv": "^4.11.2",
-    "purify-css": "^1.1.9",
     "webpack-sources": "^0.1.4"
   },
   "devDependencies": {
@@ -68,6 +67,7 @@
     "git-prepush-hook": "^1.0.1",
     "jest": "^18.1.0",
     "npm-watch": "^0.1.8",
+    "purify-css": "^1.2.2",
     "rimraf": "^2.6.1"
   },
   "pre-push": [

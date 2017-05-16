@@ -24,7 +24,7 @@ Without any CSS file being emitted as an asset, this plugin will do nothing. You
 <h2 align="center">Install</h2>
 
 ```bash
-npm i -D purifycss-webpack
+npm i -D purifycss-webpack purify-css
 ```
 
 <h2 align="center">Usage</h2>

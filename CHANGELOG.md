@@ -1,5 +1,10 @@
 ## purifycss-webpack
 
+0.7.0 / 2017-05-16
+==================
+
+  * Breaking - Push **purify-css** as a peer dependency. #108
+
 0.6.2 / 2017-05-08
 ==================
 
