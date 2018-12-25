@@ -1,3 +1,8 @@
+UNMAINTAINED
+
+Please use: https://github.com/FullHuman/purgecss-webpack-plugin
+
+---
 [![npm][npm]][npm-url]
 [![deps][deps]][deps-url]
 [![test][test]][test-url]
