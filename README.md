@@ -1,4 +1,4 @@
-UNMAINTAINED
+# UNMAINTAINED
 
 Please use: https://github.com/FullHuman/purgecss-webpack-plugin
 
